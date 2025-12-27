@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 type LinkCardProps = {
   title: string;
@@ -69,14 +70,11 @@ function LinkCard({ title, subtitle, image, onClick }: LinkCardProps) {
 }
 
 export default function Links() {
+  const navigate = useNavigate();
+
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        mt: 1,
-      }}
-    >
-      {/* Overlay vertical sutil desde arriba */}
+    <Box sx={{ position: 'relative', mt: 1 }}>
+      {/* overlay */}
       <Box
         sx={{
           position: 'absolute',
@@ -95,18 +93,17 @@ export default function Links() {
         }}
       />
 
-      {/* Grid */}
       <Grid container spacing={1} sx={{ position: 'relative', zIndex: 0 }}>
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <LinkCard title="Lorem ipsum" image="/link1.jpg" />
+          <LinkCard title="Lorem 1" image="/link1.jpg" onClick={() => navigate('/lorem1')} />
         </Grid>
 
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <LinkCard title="Lorem ipsum" image="/link2.jpg" />
+          <LinkCard title="Lorem 2" image="/link2.jpg" onClick={() => navigate('/lorem2')} />
         </Grid>
 
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <LinkCard title="Lorem ipsum" subtitle="dolor sit amet" image="/link3.jpg" />
+          <LinkCard title="Lorem 3" subtitle="dolor sit amet" image="/link3.jpg" onClick={() => navigate('/lorem3')} />
         </Grid>
       </Grid>
     </Box>

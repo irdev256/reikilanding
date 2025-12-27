@@ -5,9 +5,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const navItems = [
-  { label: 'Formación', href: '/formacion' },
-  { label: 'Campamento', href: '/campamento' },
-  { label: 'Terapeutas', href: '/terapeutas' },
+  { label: 'Lorem1', href: '/lorem1' },
+  { label: 'Lorem2', href: '/lorem2' },
+  { label: 'Lorem3', href: '/lorem3' },
   { label: 'Contacto', href: '/contacto' },
 ];
 
@@ -24,15 +24,11 @@ export default function Navbar() {
           backdropFilter: 'blur(10px) saturate(120%)',
           WebkitBackdropFilter: 'blur(10px) saturate(120%)',
           borderBottom: '1px solid rgba(255,255,255,0.08)',
-          boxShadow: `
-      0 4px 12px rgba(0,0,0,0.25)
-    `,
 
           color: '#fff',
         }}
       >
         <Toolbar sx={{ maxWidth: 1200, mx: 'auto', width: '100%' }}>
-          {/* Logo */}
           <Box
             component={Link}
             to="/"
@@ -69,7 +65,6 @@ export default function Navbar() {
             </Typography>
           </Box>
 
-          {/* Desktop links */}
           <Stack direction="row" spacing={4} sx={{ display: { xs: 'none', md: 'flex' } }}>
             {navItems.map((item) => (
               <Box

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Container, Typography, TextField, Button, Box, Stack, Alert } from '@mui/material';
+import Navbar from '../components/layout/Navbar';
 
 export default function Contacto() {
   const [submitted, setSubmitted] = useState(false);
@@ -11,6 +12,7 @@ export default function Contacto() {
 
   return (
     <Container maxWidth="sm" sx={{ py: 2 }}>
+      <Navbar />
       <Typography variant="h3" gutterBottom>
         Contacto
       </Typography>
@@ -42,11 +44,11 @@ export default function Contacto() {
               px: 4,
               py: 1.5,
               fontWeight: 500,
-              color: '#9A6B1F', // ocre / girasol apagado
-              backgroundColor: '#FFF1D6', // arena muy clara
+              color: '#9A6B1F',
+              backgroundColor: '#FFF1D6',
               border: '1px solid #9A6B1F',
               '&:hover': {
-                backgroundColor: '#ffe8b9ff', // amarillo girasol suave
+                backgroundColor: '#ffe8b9ff',
               },
             }}
           >
