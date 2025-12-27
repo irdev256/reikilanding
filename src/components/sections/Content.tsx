@@ -17,10 +17,11 @@ function VideoBlock({ eyebrow, title, description, videoUrl, reverse }: VideoBlo
         <Box
           sx={{
             position: 'relative',
-            paddingTop: '56.25%', // 16:9
-            borderRadius: 2,
+            paddingTop: '56.25%',
+            borderRadius: 3,
             overflow: 'hidden',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+            bgcolor: 'background.paper',
+            boxShadow: '0 18px 40px rgba(176, 142, 162, 0.25)', // malva suave
           }}
         >
           <Box
@@ -50,31 +51,48 @@ function VideoBlock({ eyebrow, title, description, videoUrl, reverse }: VideoBlo
           sx={{
             textTransform: 'uppercase',
             fontSize: 12,
-            letterSpacing: '0.1em',
-            color: 'primary.main',
+            letterSpacing: '0.14em',
+            color: 'secondary.main', // malva
             mb: 1,
           }}
         >
           {eyebrow}
         </Typography>
 
-        <Typography variant="h4" fontWeight={600} gutterBottom>
+        <Typography variant="h4" fontWeight={600} color="text.primary" gutterBottom>
           {title}
         </Typography>
 
-        <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
+        <Typography variant="body1" color="text.secondary" sx={{ mb: 4, maxWidth: 520 }}>
           {description}
         </Typography>
 
         <Button
           variant="contained"
+          color="primary"
           sx={{
-            backgroundColor: '#e46b61',
             textTransform: 'none',
             px: 4,
             py: 1.5,
+            fontWeight: 500,
+            color: 'text.primary',
+            backgroundColor: 'primary.main',
+            boxShadow: '0 8px 20px rgba(242, 198, 204, 0.45)',
+            transition: 'all 220ms ease',
+
             '&:hover': {
-              backgroundColor: '#cf5a51',
+              backgroundColor: '#E8AEB8', // rosa cuarzo más vivo
+              color: '#FFFFFF',
+              boxShadow: `
+        0 12px 28px rgba(242, 198, 204, 0.6),
+        0 0 0 4px rgba(242, 198, 204, 0.25)
+      `,
+              transform: 'translateY(-1px)',
+            },
+
+            '&:active': {
+              transform: 'translateY(0)',
+              boxShadow: '0 8px 18px rgba(176, 142, 162, 0.45)',
             },
           }}
         >
@@ -84,7 +102,6 @@ function VideoBlock({ eyebrow, title, description, videoUrl, reverse }: VideoBlo
     </Grid>
   );
 }
-
 export default function Content() {
   return (
     <Box
@@ -96,12 +113,12 @@ export default function Content() {
         backgroundPosition: 'center',
       }}
     >
-      {/* Overlay blanco */}
+      {/* Overlay arena suave */}
       <Box
         sx={{
           position: 'absolute',
           inset: 0,
-          backgroundColor: 'rgba(255,255,255,0.82)',
+          background: 'linear-gradient(180deg, rgba(254,252,250,0.88), rgba(234,223,204,0.92))',
         }}
       />
 
