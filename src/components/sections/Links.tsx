@@ -94,15 +94,15 @@ export default function Links() {
       />
 
       <Grid container spacing={1} sx={{ position: 'relative', zIndex: 0 }}>
-        <Grid size={4}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <LinkCard title="Lorem 1" image="/link1.jpg" onClick={() => navigate('/lorem1')} />
         </Grid>
 
-        <Grid size={4}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <LinkCard title="Lorem 2" image="/link2.jpg" onClick={() => navigate('/lorem2')} />
         </Grid>
 
-        <Grid size={4}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <LinkCard title="Lorem 3" subtitle="dolor sit amet" image="/link3.jpg" onClick={() => navigate('/lorem3')} />
         </Grid>
       </Grid>
