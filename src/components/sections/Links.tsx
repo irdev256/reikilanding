@@ -97,15 +97,15 @@ export default function Links() {
 
       {/* Grid */}
       <Grid container spacing={1} sx={{ position: 'relative', zIndex: 0 }}>
-        <Grid size={4}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <LinkCard title="Lorem ipsum" image="/link1.jpg" />
         </Grid>
 
-        <Grid size={4}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <LinkCard title="Lorem ipsum" image="/link2.jpg" />
         </Grid>
 
-        <Grid size={4}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <LinkCard title="Lorem ipsum" subtitle="dolor sit amet" image="/link3.jpg" />
         </Grid>
       </Grid>
