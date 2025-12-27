@@ -18,14 +18,27 @@ export default function Footer() {
           alignItems={{ xs: 'center', sm: 'center' }}
           textAlign={{ xs: 'center', sm: 'left' }}
         >
-          <Typography variant="body2" color="text.secondary">
-            © {new Date().getFullYear()} Nombre Apellido
-          </Typography>
+          <Link
+            href="https://wa.me/5491173624522"
+            target="_blank"
+            rel="noopener noreferrer"
+            underline="none"
+            color="text.secondary"
+            sx={{
+              fontSize: '0.875rem', // body2
+              '&:hover': {
+                color: 'text.primary',
+              },
+            }}
+          >
+            © {new Date().getFullYear()} IR-DEV
+          </Link>
 
           <Stack direction="row" spacing={3}>
             <Link
-              href="https://github.com/"
+              href="https://www.instagram.com/luz_deangel_/"
               target="_blank"
+              rel="noopener noreferrer"
               underline="none"
               color="text.secondary"
               sx={{
@@ -34,23 +47,8 @@ export default function Footer() {
                 },
               }}
             >
-              GitHub
+              Instagram
             </Link>
-
-            <Link
-              href="https://linkedin.com/"
-              target="_blank"
-              underline="none"
-              color="text.secondary"
-              sx={{
-                '&:hover': {
-                  color: 'text.primary',
-                },
-              }}
-            >
-              LinkedIn
-            </Link>
-
             <Link
               href="mailto:contacto@email.com"
               underline="none"
