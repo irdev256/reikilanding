@@ -3,6 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import NavigationLoader from './NavigationLoader';
 
 const navItems = [
   { label: 'Lorem1', href: '/lorem1' },
@@ -133,6 +134,7 @@ export default function Navbar() {
           </Stack>
         </Box>
       </Drawer>
+      <NavigationLoader />
     </>
   );
 }
