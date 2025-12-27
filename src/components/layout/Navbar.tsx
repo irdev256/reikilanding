@@ -28,19 +28,41 @@ export default function Navbar() {
       >
         <Toolbar sx={{ maxWidth: 1200, mx: 'auto', width: '100%' }}>
           {/* Logo */}
-          <Typography
-            variant="h6"
-            fontWeight={600}
+          <Box
             component={Link}
             to="/"
             sx={{
               flexGrow: 1,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1.5,
               textDecoration: 'none',
-              color: 'text.primary',
             }}
           >
-            Nombre Apellido
-          </Typography>
+            <Box
+              component="img"
+              src="/sunflower.png"
+              alt="Girasol"
+              sx={{
+                width: 28,
+                height: 28,
+                objectFit: 'contain',
+              }}
+            />
+
+            <Typography
+              sx={{
+                fontFamily: '"Ms Madi", cursive',
+                fontWeight: 400,
+                fontSize: { xs: 26, md: 32 },
+                lineHeight: 1,
+                color: 'text.primary',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Alejandrina Gonzalez
+            </Typography>
+          </Box>
 
           {/* Desktop links */}
           <Stack direction="row" spacing={4} sx={{ display: { xs: 'none', md: 'flex' } }}>
