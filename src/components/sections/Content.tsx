@@ -75,24 +75,15 @@ function VideoBlock({ eyebrow, title, description, videoUrl, reverse }: VideoBlo
             px: 4,
             py: 1.5,
             fontWeight: 500,
-            color: 'text.primary',
-            backgroundColor: 'primary.main',
+            color: '#C7547D',
+            backgroundColor: '#FFDEE9',
+            border: '1px solid #c7547d',
             boxShadow: '0 8px 20px rgba(242, 198, 204, 0.45)',
             transition: 'all 220ms ease',
 
             '&:hover': {
-              backgroundColor: '#E8AEB8', // rosa cuarzo más vivo
+              backgroundColor: '#E8AEB8',
               color: '#FFFFFF',
-              boxShadow: `
-        0 12px 28px rgba(242, 198, 204, 0.6),
-        0 0 0 4px rgba(242, 198, 204, 0.25)
-      `,
-              transform: 'translateY(-1px)',
-            },
-
-            '&:active': {
-              transform: 'translateY(0)',
-              boxShadow: '0 8px 18px rgba(176, 142, 162, 0.45)',
             },
           }}
         >

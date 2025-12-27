@@ -70,18 +70,42 @@ function LinkCard({ title, subtitle, image, onClick }: LinkCardProps) {
 
 export default function Links() {
   return (
-    <Box>
-      <Grid container spacing={0}>
+    <Box
+      sx={{
+        position: 'relative',
+      }}
+    >
+      {/* Overlay vertical sutil desde arriba */}
+      <Box
+        sx={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 1,
+          pointerEvents: 'none',
+          background: `
+            linear-gradient(
+              180deg,
+              rgba(254,252,250,0.85) 0%,
+              rgba(234,223,204,0.45) 25%,
+              rgba(242,198,204,0.18) 45%,
+              rgba(242,198,204,0.00) 70%
+            )
+          `,
+        }}
+      />
+
+      {/* Grid */}
+      <Grid container spacing={0} sx={{ position: 'relative', zIndex: 0 }}>
         <Grid size={4}>
-          <LinkCard title="Campamento Holístico" image="/link.png" />
+          <LinkCard title="Lorem ipsum" image="/link1.jpg" />
         </Grid>
 
         <Grid size={4}>
-          <LinkCard title="Formación Holística" image="/link.png" />
+          <LinkCard title="Lorem ipsum" image="/link2.jpg" />
         </Grid>
 
         <Grid size={4}>
-          <LinkCard title="Terapeutas Holísticos" subtitle="Escuela de formación" image="/link.png" />
+          <LinkCard title="Lorem ipsum" subtitle="dolor sit amet" image="/link3.jpg" />
         </Grid>
       </Grid>
     </Box>
