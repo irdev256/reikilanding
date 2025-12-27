@@ -12,7 +12,8 @@ export default function Footer() {
       sx={{
         borderTop: '1px solid',
         borderColor: 'divider',
-        py: { xs: 6, md: 8 },
+        pt: { xs: 6, md: 8 },
+        pb: { xs: 2, md: 3 },
         backgroundColor: 'background.default',
       }}
     >
@@ -153,7 +154,7 @@ export default function Footer() {
               '&:hover': { color: 'text.primary' },
             }}
           >
-            © {new Date().getFullYear()} IR-DEV · Todos los derechos reservados
+            © {new Date().getFullYear()} IR-DEV
           </Link>
         </Box>
       </Container>
