@@ -1,12 +1,17 @@
 import { Box } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import { CLIENT_WHATSAPP_LINK } from '../../constants/constants';
+import { CLIENT_WHATSAPP_LINK, WHATSAPP_DEFAULT_MESSAGE } from '../../helpers/constants';
+import { buildWhatsAppLink } from '../../helpers/utils';
 
 export default function WhatsAppButton() {
+  const whatsappUrl = buildWhatsAppLink({
+    baseUrl: CLIENT_WHATSAPP_LINK,
+    message: WHATSAPP_DEFAULT_MESSAGE,
+  });
   return (
     <Box
       component="a"
-      href={CLIENT_WHATSAPP_LINK}
+      href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       sx={{

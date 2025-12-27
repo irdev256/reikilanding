@@ -1,5 +1,5 @@
 import { Box, Container, Stack, Link } from '@mui/material';
-import { CLIENT_INSTAGRAM_LINK, OUR_WHATSAPP_LINK } from '../../constants/constants';
+import { CLIENT_INSTAGRAM_LINK, OUR_WHATSAPP_LINK } from '../../helpers/constants';
 
 export default function Footer() {
   return (
