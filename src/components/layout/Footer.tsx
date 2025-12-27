@@ -1,4 +1,5 @@
-import { Box, Container, Stack, Typography, Link } from '@mui/material';
+import { Box, Container, Stack, Link } from '@mui/material';
+import { OUR_WHATSAPP_LINK } from '../../constants/constants';
 
 export default function Footer() {
   return (
@@ -19,7 +20,7 @@ export default function Footer() {
           textAlign={{ xs: 'center', sm: 'left' }}
         >
           <Link
-            href="https://wa.me/5491173624522"
+            href={OUR_WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
             underline="none"

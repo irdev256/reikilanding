@@ -20,10 +20,15 @@ export default function Navbar() {
         position="fixed"
         elevation={0}
         sx={{
-          backgroundColor: 'rgba(255,255,255,0.9)',
-          backdropFilter: 'blur(8px)',
-          borderBottom: '1px solid',
-          borderColor: 'divider',
+          backgroundColor: 'rgba(168, 160, 160, 0.5)', // vidrio oscuro
+          backdropFilter: 'blur(10px) saturate(120%)',
+          WebkitBackdropFilter: 'blur(10px) saturate(120%)',
+          borderBottom: '1px solid rgba(255,255,255,0.08)',
+          boxShadow: `
+      0 4px 12px rgba(0,0,0,0.25)
+    `,
+
+          color: '#fff',
         }}
       >
         <Toolbar sx={{ maxWidth: 1200, mx: 'auto', width: '100%' }}>
@@ -56,7 +61,7 @@ export default function Navbar() {
                 fontWeight: 400,
                 fontSize: { xs: 26, md: 32 },
                 lineHeight: 1,
-                color: 'text.primary',
+                color: '#fafafa',
                 whiteSpace: 'nowrap',
               }}
             >
@@ -73,7 +78,7 @@ export default function Navbar() {
                 to={item.href}
                 sx={{
                   textDecoration: 'none',
-                  color: 'text.primary',
+                  color: '#fafafa',
                   fontSize: 14,
                   '&:hover': {
                     opacity: 0.6,

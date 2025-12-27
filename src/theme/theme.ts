@@ -31,25 +31,25 @@ export const theme = createTheme({
 
     background: {
       default: '#FEFCFA', // blanco roto
-      paper: '#EADFCC',   // arena clara para cards / panels
+      paper: '#EADFCC', // arena clara para cards / panels
     },
 
     primary: {
-      main: '#F2C6CC',    // rosa cuarzo
+      main: '#F2C6CC', // rosa cuarzo
       contrastText: '#6B6460',
     },
 
     secondary: {
-      main: '#B08EA2',    // malva suave
+      main: '#B08EA2', // malva suave
       contrastText: '#FEFCFA',
     },
 
     text: {
-      primary: '#6B6460',   // gris cálido
+      primary: '#6B6460', // gris cálido
       secondary: '#8A817C',
     },
 
-    divider: '#E3D7D0',     // separadores muy suaves
+    divider: '#E3D7D0', // separadores muy suaves
 
     action: {
       hover: 'rgba(242, 198, 204, 0.12)', // rosa cuarzo translúcido

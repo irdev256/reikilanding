@@ -1,12 +1,12 @@
 import { Box } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import { WHATSAPP_LINK } from '../../constants/constants';
+import { CLIENT_WHATSAPP_LINK } from '../../constants/constants';
 
 export default function WhatsAppButton() {
   return (
     <Box
       component="a"
-      href={WHATSAPP_LINK}
+      href={CLIENT_WHATSAPP_LINK}
       target="_blank"
       rel="noopener noreferrer"
       sx={{

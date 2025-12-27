@@ -1,4 +1,5 @@
 import { Box, Container, Stack, Typography } from '@mui/material';
+import Navbar from '../layout/Navbar';
 
 export default function Hero() {
   return (
@@ -13,6 +14,7 @@ export default function Hero() {
         backgroundPosition: 'center',
       }}
     >
+      <Navbar />
       <Box
         sx={{
           position: 'absolute',
