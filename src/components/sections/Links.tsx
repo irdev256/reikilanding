@@ -73,6 +73,7 @@ export default function Links() {
     <Box
       sx={{
         position: 'relative',
+        mt: 1,
       }}
     >
       {/* Overlay vertical sutil desde arriba */}
@@ -95,7 +96,7 @@ export default function Links() {
       />
 
       {/* Grid */}
-      <Grid container spacing={0} sx={{ position: 'relative', zIndex: 0 }}>
+      <Grid container spacing={1} sx={{ position: 'relative', zIndex: 0 }}>
         <Grid size={4}>
           <LinkCard title="Lorem ipsum" image="/link1.jpg" />
         </Grid>

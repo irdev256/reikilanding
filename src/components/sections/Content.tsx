@@ -69,21 +69,16 @@ function VideoBlock({ eyebrow, title, description, videoUrl, reverse }: VideoBlo
 
         <Button
           variant="contained"
-          color="primary"
           sx={{
             textTransform: 'none',
             px: 4,
             py: 1.5,
             fontWeight: 500,
-            color: '#C7547D',
-            backgroundColor: '#FFDEE9',
-            border: '1px solid #c7547d',
-            boxShadow: '0 8px 20px rgba(242, 198, 204, 0.45)',
-            transition: 'all 220ms ease',
-
+            color: '#9A6B1F', // ocre / girasol apagado
+            backgroundColor: '#FFF1D6', // arena muy clara
+            border: '1px solid #9A6B1F',
             '&:hover': {
-              backgroundColor: '#E8AEB8',
-              color: '#FFFFFF',
+              backgroundColor: '#ffe8b9ff', // amarillo girasol suave
             },
           }}
         >
