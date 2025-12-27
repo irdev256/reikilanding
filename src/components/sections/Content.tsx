@@ -110,18 +110,18 @@ export default function Content() {
 
       <Container maxWidth="lg" sx={{ position: 'relative' }}>
         <VideoBlock
-          eyebrow="¿Qué es la formación holística?"
-          title="Formación Holística"
-          description="Te vamos a acompañar en tu proceso de transformación personal para que salgas de la crisis que estás viviendo y, siguiendo el llamado de tu corazón, puedas encontrar el propósito de tu vida."
+          eyebrow="Lorem ipsum dolor set num"
+          title="Lorem Ipsum Amet"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           videoUrl="https://www.youtube.com/embed/VIDEO_ID"
         />
 
         <Box sx={{ height: { xs: 80, md: 120 } }} />
 
         <VideoBlock
-          eyebrow="¿Qué son terapeutas holísticos?"
-          title="Primera Escuela para Terapeutas Holísticos"
-          description="Formación profesional orientada al desarrollo integral del ser, brindando herramientas prácticas para acompañar procesos de sanación y crecimiento personal."
+          eyebrow="Lorem ipsum dolor set num"
+          title="Lorem Ipsum Amet"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           videoUrl="https://www.youtube.com/embed/VIDEO_ID"
           reverse
         />
