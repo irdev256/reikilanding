@@ -3,7 +3,7 @@ import { Box, Container, Grid, Link, Stack, Typography, IconButton } from '@mui/
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
-import { CLIENT_INSTAGRAM_LINK, GOOGLE_MAPS_LINK, OUR_WHATSAPP_LINK } from '../../constants/constants';
+import { CLIENT_INSTAGRAM_LINK, GOOGLE_MAPS_LINK, OUR_WHATSAPP_LINK } from '../../helpers/constants';
 
 export default function Footer() {
   return (
