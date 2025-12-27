@@ -11,7 +11,7 @@ export default function Contacto() {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ py: 2 }}>
+    <Container maxWidth="sm" sx={{ py: 2, mb: 10 }}>
       <Navbar />
       <Typography variant="h3" gutterBottom>
         Contacto
