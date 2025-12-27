@@ -3,7 +3,7 @@ import { Box, Container, Grid, Link, Stack, Typography, IconButton } from '@mui/
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
-import { CLIENT_INSTAGRAM_LINK, OUR_WHATSAPP_LINK } from '../../constants/constants';
+import { CLIENT_INSTAGRAM_LINK, GOOGLE_MAPS_LINK, OUR_WHATSAPP_LINK } from '../../constants/constants';
 
 export default function Footer() {
   return (
@@ -17,21 +17,37 @@ export default function Footer() {
       }}
     >
       <Container maxWidth="lg">
-        {/* Bloque principal */}
         <Grid container spacing={{ xs: 4, md: 6 }} textAlign={{ xs: 'center', md: 'left' }}>
           {/* Marca */}
+          {/* Marca */}
           <Grid size={{ xs: 12, md: 3 }}>
-            <Stack spacing={1} alignItems={{ xs: 'center', md: 'flex-start' }}>
+            <Stack
+              spacing={1.2}
+              alignItems="center" // siempre centrado (nombre + girasol)
+            >
               <Typography
                 sx={{
                   fontFamily: '"Ms Madi", cursive',
                   fontSize: 32,
                   lineHeight: 1,
                   color: 'text.primary',
+                  textAlign: 'center',
                 }}
               >
                 Alejandrina Gonzalez
               </Typography>
+
+              <Box
+                component="img"
+                src="/sunflower.png"
+                alt="Girasol"
+                sx={{
+                  width: 45,
+                  height: 45,
+                  objectFit: 'contain',
+                  opacity: 0.9,
+                }}
+              />
             </Stack>
           </Grid>
 
@@ -54,32 +70,48 @@ export default function Footer() {
 
           {/* Ubicación */}
           <Grid size={{ xs: 12, md: 3 }}>
-            <Stack spacing={1.2}>
+            <Stack spacing={1.2} alignItems={{ xs: 'center', md: 'flex-start' }}>
               <Typography variant="h6" fontWeight={500}>
                 Ubicación
               </Typography>
 
-              <Typography variant="body2" color="text.secondary">
-                📍 Calle 123 Ciudad
-              </Typography>
+              <Link
+                href={GOOGLE_MAPS_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                underline="none"
+                color="text.secondary"
+                sx={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: { xs: 'center', md: 'flex-start' },
+                  gap: 0.5,
+                  textAlign: 'center',
+                  '&:hover': {
+                    color: 'text.primary',
+                  },
+                }}
+              >
+                📍 Av. Córdoba 3621 - Palermo
+              </Link>
             </Stack>
           </Grid>
 
           {/* Seguime en */}
           <Grid size={{ xs: 12, md: 3 }}>
-            <Stack spacing={1.5} alignItems={{ xs: 'center', md: 'flex-start' }}>
+            <Stack alignItems={{ xs: 'center', md: 'flex-start' }}>
               <Typography variant="h6" fontWeight={500}>
                 Seguime en
               </Typography>
 
-              <Stack direction="row" spacing={1}>
+              <Stack direction="row">
                 <IconButton
                   component="a"
                   href={CLIENT_INSTAGRAM_LINK}
                   target="_blank"
                   sx={{
                     color: 'text.secondary',
-                    '&:hover': { color: '#9A6B1F' }, // tono girasol
+                    '&:hover': { color: '#9A6B1F' },
                   }}
                 >
                   <InstagramIcon />

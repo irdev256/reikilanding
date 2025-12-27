@@ -4,3 +4,5 @@ export const CLIENT_INSTAGRAM_LINK = 'https://www.instagram.com/luz_deangel_/';
 
 // OUR
 export const OUR_WHATSAPP_LINK = 'https://wa.me/5491173624522';
+
+export const GOOGLE_MAPS_LINK = 'https://www.google.com/maps/search/?api=1&query=Cordoba+3621+Buenos+Aires+Argentina';
