@@ -1,4 +1,8 @@
-import { Box, Container, Stack, Link } from '@mui/material';
+import { Box, Container, Grid, Link, Stack, Typography, IconButton } from '@mui/material';
+
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+
 import { CLIENT_INSTAGRAM_LINK, OUR_WHATSAPP_LINK } from '../../constants/constants';
 
 export default function Footer() {
@@ -8,62 +12,118 @@ export default function Footer() {
       sx={{
         borderTop: '1px solid',
         borderColor: 'divider',
-        py: 4,
+        py: { xs: 6, md: 8 },
+        backgroundColor: 'background.default',
       }}
     >
       <Container maxWidth="lg">
-        <Stack
-          direction={{ xs: 'column', sm: 'row' }}
-          spacing={2}
-          justifyContent="space-between"
-          alignItems={{ xs: 'center', sm: 'center' }}
-          textAlign={{ xs: 'center', sm: 'left' }}
+        {/* Bloque principal */}
+        <Grid container spacing={{ xs: 4, md: 6 }} textAlign={{ xs: 'center', md: 'left' }}>
+          {/* Marca */}
+          <Grid size={{ xs: 12, md: 3 }}>
+            <Stack spacing={1} alignItems={{ xs: 'center', md: 'flex-start' }}>
+              <Typography
+                sx={{
+                  fontFamily: '"Ms Madi", cursive',
+                  fontSize: 32,
+                  lineHeight: 1,
+                  color: 'text.primary',
+                }}
+              >
+                Alejandrina Gonzalez
+              </Typography>
+            </Stack>
+          </Grid>
+
+          {/* Contactame */}
+          <Grid size={{ xs: 12, md: 3 }}>
+            <Stack spacing={1.2}>
+              <Typography variant="h6" fontWeight={500}>
+                Contactame
+              </Typography>
+
+              <Link href={OUR_WHATSAPP_LINK} target="_blank" underline="none" color="text.secondary">
+                +54 11 1234 5678
+              </Link>
+
+              <Link href="mailto:contacto@email.com" underline="none" color="text.secondary">
+                contacto@email.com
+              </Link>
+            </Stack>
+          </Grid>
+
+          {/* Ubicación */}
+          <Grid size={{ xs: 12, md: 3 }}>
+            <Stack spacing={1.2}>
+              <Typography variant="h6" fontWeight={500}>
+                Ubicación
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                📍 Calle 123 Ciudad
+              </Typography>
+            </Stack>
+          </Grid>
+
+          {/* Seguime en */}
+          <Grid size={{ xs: 12, md: 3 }}>
+            <Stack spacing={1.5} alignItems={{ xs: 'center', md: 'flex-start' }}>
+              <Typography variant="h6" fontWeight={500}>
+                Seguime en
+              </Typography>
+
+              <Stack direction="row" spacing={1}>
+                <IconButton
+                  component="a"
+                  href={CLIENT_INSTAGRAM_LINK}
+                  target="_blank"
+                  sx={{
+                    color: 'text.secondary',
+                    '&:hover': { color: '#9A6B1F' }, // tono girasol
+                  }}
+                >
+                  <InstagramIcon />
+                </IconButton>
+
+                <IconButton
+                  component="a"
+                  href="#"
+                  target="_blank"
+                  sx={{
+                    color: 'text.secondary',
+                    '&:hover': { color: '#9A6B1F' },
+                  }}
+                >
+                  <FacebookIcon />
+                </IconButton>
+              </Stack>
+            </Stack>
+          </Grid>
+        </Grid>
+
+        {/* Footer inferior */}
+        <Box
+          sx={{
+            mt: { xs: 5, md: 6 },
+            pt: 3,
+            borderTop: '1px solid',
+            borderColor: 'divider',
+            textAlign: 'center',
+          }}
         >
           <Link
             href={OUR_WHATSAPP_LINK}
             target="_blank"
-            rel="noopener noreferrer"
             underline="none"
             color="text.secondary"
             sx={{
-              fontSize: '0.875rem', // body2
-              '&:hover': {
-                color: 'text.primary',
-              },
+              fontSize: 12,
+              '&:hover': { color: 'text.primary' },
             }}
           >
-            © {new Date().getFullYear()} IR-DEV
+            © {new Date().getFullYear()} IR-DEV · Todos los derechos reservados
           </Link>
-
-          <Stack direction="row" spacing={3}>
-            <Link
-              href={CLIENT_INSTAGRAM_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              underline="none"
-              color="text.secondary"
-              sx={{
-                '&:hover': {
-                  color: 'text.primary',
-                },
-              }}
-            >
-              Instagram
-            </Link>
-            <Link
-              href="mailto:contacto@email.com"
-              underline="none"
-              color="text.secondary"
-              sx={{
-                '&:hover': {
-                  color: 'text.primary',
-                },
-              }}
-            >
-              Contacto
-            </Link>
-          </Stack>
-        </Stack>
+        </Box>
       </Container>
     </Box>
   );
