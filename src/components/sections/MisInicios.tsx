@@ -1,6 +1,9 @@
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { Box, Button, Container, Grid, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export default function MisInicios() {
+  const navigate = useNavigate();
+
   return (
     <Box
       component="section"
@@ -82,6 +85,33 @@ export default function MisInicios() {
             </Typography>
           </Grid>
         </Grid>
+
+        {/* Botón */}
+        <Box
+          sx={{
+            mt: { xs: 5, md: 7 },
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <Button
+            onClick={() => navigate('/sobre-mi')}
+            sx={{
+              textTransform: 'none',
+              px: 4,
+              py: 1.5,
+              fontWeight: 500,
+              color: '#9A6B1F', // ocre / girasol apagado
+              backgroundColor: '#FFF1D6', // arena muy clara
+              border: '1px solid #9A6B1F',
+              '&:hover': {
+                backgroundColor: '#ffe8b9ff', // amarillo girasol suave
+              },
+            }}
+          >
+            SOBRE MI
+          </Button>
+        </Box>
       </Container>
     </Box>
   );
