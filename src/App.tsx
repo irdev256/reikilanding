@@ -7,8 +7,9 @@ import WhatsAppButton from './components/common/WhatsAppButton';
 
 // --- Pages ----
 import Home from './pages/Home';
-import Lorem1 from './pages/Lorem1';
+import SobreMi from './pages/SobreMi';
 import Contacto from './pages/Contacto';
+import Lorem1 from './pages/Lorem1';
 import Lorem2 from './pages/Lorem2';
 import Lorem3 from './pages/Lorem3';
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/lorem1" element={<Lorem1 />} />
           <Route path="/lorem2" element={<Lorem2 />} />
           <Route path="/lorem3" element={<Lorem3 />} />
+          <Route path="/sobre-mi" element={<SobreMi />} />
           <Route path="/contacto" element={<Contacto />} />
         </Routes>
         <Footer />
