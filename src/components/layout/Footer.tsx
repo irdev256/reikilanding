@@ -1,5 +1,5 @@
 import { Box, Container, Stack, Link } from '@mui/material';
-import { OUR_WHATSAPP_LINK } from '../../constants/constants';
+import { CLIENT_INSTAGRAM_LINK, OUR_WHATSAPP_LINK } from '../../constants/constants';
 
 export default function Footer() {
   return (
@@ -37,7 +37,7 @@ export default function Footer() {
 
           <Stack direction="row" spacing={3}>
             <Link
-              href="https://www.instagram.com/luz_deangel_/"
+              href={CLIENT_INSTAGRAM_LINK}
               target="_blank"
               rel="noopener noreferrer"
               underline="none"
