@@ -7,7 +7,6 @@ export default function Footer() {
       sx={{
         borderTop: '1px solid',
         borderColor: 'divider',
-        mt: 10,
         py: 4,
       }}
     >

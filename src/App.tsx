@@ -9,6 +9,7 @@ import WhatsAppButton from './components/common/WhatsAppButton';
 // --- Pages ----
 import Home from './pages/Home';
 import Formacion from './pages/Formacion';
+import Contacto from './pages/Contacto';
 
 // --------------------------------------------------------------
 
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/formacion" element={<Formacion />} />
+          <Route path="/contacto" element={<Contacto />} />
         </Routes>
 
         <Footer />

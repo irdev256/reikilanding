@@ -1,11 +1,12 @@
 import { Box } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { WHATSAPP_LINK } from '../../constants/constants';
 
 export default function WhatsAppButton() {
   return (
     <Box
       component="a"
-      href="https://wa.me/123" // 👈 CAMBIAR POR EL NÚMERO REAL
+      href={WHATSAPP_LINK}
       target="_blank"
       rel="noopener noreferrer"
       sx={{

@@ -56,7 +56,7 @@ export default function Hero() {
               color: '#5B5450', // más contraste solo en hero
             }}
           >
-            Lorem ipsum dolor sit amet
+            Lorem ipsum amet
           </Typography>
 
           {/* Subtítulo */}

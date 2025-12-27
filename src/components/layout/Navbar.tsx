@@ -48,7 +48,7 @@ export default function Navbar() {
               <Box
                 key={item.label}
                 component={Link}
-                to="/formacion"
+                to={item.href}
                 sx={{
                   textDecoration: 'none',
                   color: 'text.primary',
