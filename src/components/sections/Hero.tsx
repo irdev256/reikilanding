@@ -18,7 +18,7 @@ export default function Hero() {
         sx={{
           position: 'absolute',
           inset: 0,
-          backgroundColor: 'rgba(255,255,255,0.32)',
+          backgroundColor: 'rgba(255,255,255,0.30)',
         }}
       />
 
@@ -40,15 +40,17 @@ export default function Hero() {
             pr: { md: 16 },
           }}
         >
-          <Typography variant="h2" fontWeight={600}>
-            Nombre Apellido
+          <Typography variant="h1" fontWeight={600}>
+            Lorem ipsum dolor sit amet
           </Typography>
 
           <Typography variant="h5" color="text.secondary">
-            Desarrollador web especializado en experiencias simples y efectivas.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </Typography>
 
-          <Typography variant="body1">Trabajo en proyectos digitales enfocados en claridad, diseño y funcionalidad.</Typography>
+          <Typography variant="body1">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </Typography>
         </Stack>
       </Container>
     </Box>
