@@ -10,6 +10,26 @@ export default function Contacto() {
     setSubmitted(true);
   };
 
+  const textFieldSx = {
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#CFC5B8', // borde normal
+      },
+      '&:hover fieldset': {
+        borderColor: '#B8AA96',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#C8A45D', // 🔑 dorado suave (como el CTA)
+      },
+    },
+    '& .MuiInputLabel-root': {
+      color: '#7A6F63',
+      '&.Mui-focused': {
+        color: '#6E5B3E', // label en focus
+      },
+    },
+  };
+
   return (
     <Box
       sx={{
@@ -78,11 +98,11 @@ export default function Contacto() {
 
         <Box component="form" onSubmit={handleSubmit} noValidate>
           <Stack spacing={3}>
-            <TextField label="Nombre" name="nombre" required fullWidth />
+            <TextField label="Nombre" name="nombre" required fullWidth sx={textFieldSx} />
 
-            <TextField label="Email" name="email" type="email" required fullWidth />
+            <TextField label="Email" name="email" type="email" required fullWidth sx={textFieldSx} />
 
-            <TextField label="Mensaje" name="mensaje" required fullWidth multiline rows={4} />
+            <TextField label="Mensaje" name="mensaje" required fullWidth multiline rows={4} sx={textFieldSx} />
 
             <Button
               type="submit"

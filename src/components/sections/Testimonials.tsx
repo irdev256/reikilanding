@@ -76,7 +76,7 @@ export default function Testimonials() {
       />
 
       <Container maxWidth="md" sx={{ position: 'relative', textAlign: 'center' }}>
-        <Typography variant="h4" fontWeight={600} sx={{ mb: 6 }}>
+        <Typography variant="h4" fontWeight={600} sx={{ mb: 6, color: '#6E5B3E' }}>
           Testimonios
         </Typography>
 
