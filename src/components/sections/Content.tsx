@@ -20,14 +20,14 @@ function ContentBlock({ eyebrow, title, content, aside, reverse }: ContentBlockP
             textTransform: 'uppercase',
             fontSize: 12,
             letterSpacing: '0.14em',
-            color: 'secondary.main',
+            color: '#6E5B3E',
             mb: 1,
           }}
         >
           {eyebrow}
         </Typography>
 
-        <Typography variant="h4" fontWeight={600} gutterBottom>
+        <Typography variant="h4" fontWeight={600} gutterBottom sx={{ color: '#6E5B3E' }}>
           {title}
         </Typography>
 
