@@ -1,93 +1,57 @@
-import { Box, Button, Container, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { Grid } from '@mui/material';
 
-type VideoBlockProps = {
+type ContentBlockProps = {
   eyebrow: string;
   title: string;
-  description: string;
-  videoUrl: string;
+  content: React.ReactNode;
+  aside?: React.ReactNode;
   reverse?: boolean;
 };
 
-function VideoBlock({ eyebrow, title, description, videoUrl, reverse }: VideoBlockProps) {
+function ContentBlock({ eyebrow, title, content, aside, reverse }: ContentBlockProps) {
   return (
     <Grid container spacing={6} direction={reverse ? 'row-reverse' : 'row'} alignItems="center">
-      {/* Video */}
+      {/* Texto principal */}
       <Grid size={{ xs: 12, md: 6 }}>
-        <Box
-          sx={{
-            position: 'relative',
-            paddingTop: '56.25%',
-            borderRadius: 3,
-            overflow: 'hidden',
-            bgcolor: 'background.paper',
-            boxShadow: '0 18px 40px rgba(176, 142, 162, 0.25)', // malva suave
-          }}
-        >
-          <Box
-            component="iframe"
-            src={videoUrl}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            sx={{
-              position: 'absolute',
-              inset: 0,
-              width: '100%',
-              height: '100%',
-              border: 0,
-            }}
-          />
-        </Box>
-      </Grid>
-
-      {/* Texto */}
-      <Grid
-        size={{ xs: 12, md: 6 }}
-        sx={{
-          textAlign: { xs: 'center', md: 'left' },
-        }}
-      >
         <Typography
           sx={{
             textTransform: 'uppercase',
             fontSize: 12,
             letterSpacing: '0.14em',
-            color: 'secondary.main', // malva
+            color: 'secondary.main',
             mb: 1,
           }}
         >
           {eyebrow}
         </Typography>
 
-        <Typography variant="h4" fontWeight={600} color="text.primary" gutterBottom>
+        <Typography variant="h4" fontWeight={600} gutterBottom>
           {title}
         </Typography>
 
-        <Typography variant="body1" color="text.secondary" sx={{ mb: 4, maxWidth: 520 }}>
-          {description}
-        </Typography>
-
-        <Button
-          variant="contained"
-          sx={{
-            textTransform: 'none',
-            px: 4,
-            py: 1.5,
-            fontWeight: 500,
-            color: '#9A6B1F', // ocre / girasol apagado
-            backgroundColor: '#FFF1D6', // arena muy clara
-            border: '1px solid #9A6B1F',
-            '&:hover': {
-              backgroundColor: '#ffe8b9ff', // amarillo girasol suave
-            },
-          }}
-        >
-          Quiero saber más
-        </Button>
+        {content}
       </Grid>
+
+      {/* Columna visual / apoyo */}
+      {aside && (
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Box
+            sx={{
+              p: 4,
+              borderRadius: 3,
+              backgroundColor: 'rgba(255,255,255,0.75)',
+              boxShadow: '0 18px 40px rgba(176, 142, 162, 0.25)',
+            }}
+          >
+            {aside}
+          </Box>
+        </Grid>
+      )}
     </Grid>
   );
 }
+
 export default function Content() {
   return (
     <Box
@@ -99,7 +63,6 @@ export default function Content() {
         backgroundPosition: 'center',
       }}
     >
-      {/* Overlay arena suave */}
       <Box
         sx={{
           position: 'absolute',
@@ -109,21 +72,76 @@ export default function Content() {
       />
 
       <Container maxWidth="lg" sx={{ position: 'relative' }}>
-        <VideoBlock
-          eyebrow="Lorem ipsum dolor set num"
-          title="Lorem Ipsum Amet"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          videoUrl="https://www.youtube.com/embed/VIDEO_ID"
+        <ContentBlock
+          eyebrow="La experiencia"
+          title="¿Qué es esta mentoría?"
+          content={
+            <>
+              <Typography variant="body1" sx={{ mb: 3 }}>
+                Un proceso profundo de 4 meses de acompañamiento consciente, donde te guío a desarrollar tu mediumnidad desde Dios, la Luz y la
+                Fuente, para despertar tu conciencia y alinear tu vida con el plan de tu alma.
+              </Typography>
+
+              <Typography variant="body1">
+                No se trata solo de aprender técnicas, sino de recordar quién sos, sanar tu historia y vivir desde un lugar de coherencia espiritual.
+              </Typography>
+            </>
+          }
+          aside={
+            <Box>
+              <Typography variant="subtitle2" gutterBottom>
+                Un espacio sagrado
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                Un espacio de transformación interior, sostenido con amor, respeto y guía constante durante todo el proceso.
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                Cada encuentro está pensado para acompañarte con cuidado y profundidad, respetando tus tiempos, tu sensibilidad y tu propio camino
+                espiritual.
+              </Typography>
+            </Box>
+          }
         />
 
         <Box sx={{ height: { xs: 80, md: 120 } }} />
 
-        <VideoBlock
-          eyebrow="Lorem ipsum dolor set num"
-          title="Lorem Ipsum Amet"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          videoUrl="https://www.youtube.com/embed/VIDEO_ID"
+        <ContentBlock
+          eyebrow="El proceso"
+          title="¿Qué trabajamos?"
           reverse
+          content={
+            <>
+              <Typography variant="body1" sx={{ mb: 3 }}>
+                <strong>Mes 1 · Desarrollo de la Mediumnidad</strong>
+                <br />
+                Conexión con guías espirituales, limpiezas energéticas, protección espiritual y canalización consciente.
+              </Typography>
+
+              <Typography variant="body1">
+                <strong>Meses 2 a 4 · Despertar de la Conciencia</strong>
+                <br />
+                Sanación del alma, desapego, leyes espirituales, propósito, expansiones energéticas y alineación divina.
+              </Typography>
+            </>
+          }
+          aside={
+            <Box>
+              <Typography variant="subtitle2" gutterBottom>
+                Duración
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                4 meses de acompañamiento profundo y sostenido, con un proceso que se despliega de manera gradual y consciente.
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                El trabajo no queda solo en los encuentros: se integra en tu vida diaria, acompañando cambios reales en tu percepción, energía y forma
+                de habitar tu camino.
+              </Typography>
+            </Box>
+          }
         />
       </Container>
     </Box>
