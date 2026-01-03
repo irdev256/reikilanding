@@ -1,0 +1,9 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* Compensa AppBar fixed */
+section,
+[id] {
+  scroll-margin-top: 96px;
+}

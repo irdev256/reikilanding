@@ -1,9 +1,11 @@
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import Navbar from '../layout/Navbar';
+import { HomeSection } from '../../helpers/constants';
 
 export default function Hero() {
   return (
     <Box
+      id={HomeSection.HERO}
       sx={{
         minHeight: '100vh',
         position: 'relative',

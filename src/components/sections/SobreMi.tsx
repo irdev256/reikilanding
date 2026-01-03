@@ -1,8 +1,10 @@
 import { Box, Container, Typography } from '@mui/material';
+import { HomeSection } from '../../helpers/constants';
 
 export default function SobreMi() {
   return (
     <Box
+      id={HomeSection.SOBRE_MI}
       component="section"
       sx={{
         position: 'relative',

@@ -4,14 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavigationLoader from './NavigationLoader';
-
-const navItems = [
-  { label: 'Lorem1', href: '/lorem1' },
-  { label: 'Lorem2', href: '/lorem2' },
-  { label: 'Lorem3', href: '/lorem3' },
-  { label: 'Sobre mi', href: '/sobre-mi' },
-  { label: 'Contacto', href: '/contacto' },
-];
+import { HomeSection, NavItems } from '../../helpers/constants';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -32,8 +25,8 @@ export default function Navbar() {
       >
         <Toolbar sx={{ maxWidth: 1200, mx: 'auto', width: '100%' }}>
           <Box
-            component={Link}
-            to="/"
+            component="a"
+            href={`/#${HomeSection.HERO}`}
             sx={{
               flexGrow: 1,
               display: 'flex',
@@ -68,23 +61,17 @@ export default function Navbar() {
           </Box>
 
           <Stack direction="row" spacing={4} sx={{ display: { xs: 'none', md: 'flex' } }}>
-            {navItems.map((item) => (
-              <Box
-                key={item.label}
-                component={Link}
-                to={item.href}
-                sx={{
-                  textDecoration: 'none',
-                  color: '#fafafa',
-                  fontSize: 14,
-                  '&:hover': {
-                    opacity: 0.6,
-                  },
-                }}
-              >
-                {item.label}
-              </Box>
-            ))}
+            {NavItems.map((item) =>
+              item.type === 'route' ? (
+                <Box key={item.label} component={Link} to={item.href} sx={linkStyle}>
+                  {item.label}
+                </Box>
+              ) : (
+                <Box key={item.label} component="a" href={`/#${item.href}`} sx={linkStyle}>
+                  {item.label}
+                </Box>
+              )
+            )}
           </Stack>
 
           {/* Mobile menu button */}
@@ -117,21 +104,17 @@ export default function Navbar() {
           </Box>
 
           <Stack spacing={3} mt={4}>
-            {navItems.map((item) => (
-              <Box
-                key={item.label}
-                component="a"
-                href={item.href}
-                onClick={() => setOpen(false)}
-                sx={{
-                  fontSize: 18,
-                  textDecoration: 'none',
-                  color: 'text.primary',
-                }}
-              >
-                {item.label}
-              </Box>
-            ))}
+            {NavItems.map((item) =>
+              item.type === 'route' ? (
+                <Box key={item.label} component={Link} to={item.href} onClick={() => setOpen(false)} sx={drawerLinkStyle}>
+                  {item.label}
+                </Box>
+              ) : (
+                <Box key={item.label} component="a" href={`/#${item.href}`} onClick={() => setOpen(false)} sx={drawerLinkStyle}>
+                  {item.label}
+                </Box>
+              )
+            )}
           </Stack>
         </Box>
       </Drawer>
@@ -139,3 +122,19 @@ export default function Navbar() {
     </>
   );
 }
+
+// ------------- Styles ----------------
+
+const linkStyle = {
+  textDecoration: 'none',
+  color: '#fafafa',
+  fontSize: 14,
+  cursor: 'pointer',
+  '&:hover': { opacity: 0.6 },
+};
+
+const drawerLinkStyle = {
+  fontSize: 18,
+  textDecoration: 'none',
+  color: 'text.primary',
+};

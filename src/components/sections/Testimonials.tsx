@@ -1,5 +1,6 @@
 import { Box, Container, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { HomeSection } from '../../helpers/constants';
 
 type Testimonial = {
   text: string;
@@ -35,6 +36,7 @@ export default function Testimonials() {
 
   return (
     <Box
+      id={HomeSection.TESTIMONIALS}
       sx={{
         position: 'relative',
         minHeight: { xs: 520, md: 680 },

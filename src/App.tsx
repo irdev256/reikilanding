@@ -5,13 +5,16 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer from './components/layout/Footer';
 import WhatsAppButton from './components/common/WhatsAppButton';
 
+import './global.css';
+
 // --- Pages ----
 import Home from './pages/Home';
-import SobreMi from './pages/SobreMi';
 import Contacto from './pages/Contacto';
-import Lorem1 from './pages/Lorem1';
-import Lorem2 from './pages/Lorem2';
-import Lorem3 from './pages/Lorem3';
+import { PageRoutes } from './helpers/constants';
+// import SobreMi from './pages/SobreMi';
+// import Lorem1 from './pages/Lorem1';
+// import Lorem2 from './pages/Lorem2';
+// import Lorem3 from './pages/Lorem3';
 
 // --------------------------------------------------------------
 
@@ -21,12 +24,12 @@ function App() {
       <CssBaseline />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/lorem1" element={<Lorem1 />} />
-          <Route path="/lorem2" element={<Lorem2 />} />
-          <Route path="/lorem3" element={<Lorem3 />} />
-          <Route path="/sobre-mi" element={<SobreMi />} />
-          <Route path="/contacto" element={<Contacto />} />
+          <Route path={PageRoutes.HOME} element={<Home />} />
+          {/* <Route path="/lorem1" element={<Lorem1 />} /> */}
+          {/* <Route path="/lorem2" element={<Lorem2 />} /> */}
+          {/* <Route path="/lorem3" element={<Lorem3 />} /> */}
+          {/* <Route path="/sobre-mi" element={<SobreMi />} /> */}
+          <Route path={PageRoutes.CONTACTO} element={<Contacto />} />
         </Routes>
         <Footer />
         <WhatsAppButton />
