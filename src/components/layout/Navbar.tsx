@@ -2,12 +2,26 @@ import { AppBar, Box, Drawer, IconButton, Stack, Toolbar, Typography } from '@mu
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import NavigationLoader from './NavigationLoader';
+import { Link, useLocation } from 'react-router-dom';
 import { HomeSection, NavItems } from '../../helpers/constants';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
+  const visibleNavItems = NavItems.filter((item) => {
+    // Si no estoy en Home, oculto sections
+    if (!isHome && item.type === 'anchor') return false;
+
+    // Si es route y estoy parado en esa misma ruta, ocultarla
+    if (item.type === 'route' && location.pathname === item.href) return false;
+
+    return true;
+  });
+
+  const hasNavItems = visibleNavItems.length > 0;
 
   return (
     <>
@@ -19,7 +33,6 @@ export default function Navbar() {
           backdropFilter: 'blur(10px) saturate(120%)',
           WebkitBackdropFilter: 'blur(10px) saturate(120%)',
           borderBottom: '1px solid rgba(255,255,255,0.08)',
-
           color: '#fff',
         }}
       >
@@ -61,7 +74,7 @@ export default function Navbar() {
           </Box>
 
           <Stack direction="row" spacing={4} sx={{ display: { xs: 'none', md: 'flex' } }}>
-            {NavItems.map((item) =>
+            {visibleNavItems.map((item) =>
               item.type === 'route' ? (
                 <Box key={item.label} component={Link} to={item.href} sx={linkStyle}>
                   {item.label}
@@ -83,41 +96,42 @@ export default function Navbar() {
 
       {/* Spacer para que el contenido no quede debajo */}
       <Toolbar />
+      {hasNavItems && (
+        <Drawer
+          anchor="right"
+          open={open}
+          onClose={() => setOpen(false)}
+          PaperProps={{
+            sx: {
+              width: '40%',
+              maxWidth: 300,
+            },
+          }}
+        >
+          <Box sx={{ p: 3 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <IconButton onClick={() => setOpen(false)}>
+                <CloseIcon />
+              </IconButton>
+            </Box>
 
-      {/* Mobile drawer */}
-      <Drawer
-        anchor="right"
-        open={open}
-        onClose={() => setOpen(false)}
-        PaperProps={{
-          sx: {
-            width: '40%',
-            maxWidth: 300,
-          },
-        }}
-      >
-        <Box sx={{ p: 3 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <IconButton onClick={() => setOpen(false)}>
-              <CloseIcon />
-            </IconButton>
+            <Stack spacing={3} mt={4}>
+              {visibleNavItems.map((item) =>
+                item.type === 'route' ? (
+                  <Box key={item.label} component={Link} to={item.href} onClick={() => setOpen(false)} sx={drawerLinkStyle}>
+                    {item.label}
+                  </Box>
+                ) : (
+                  <Box key={item.label} component="a" href={`/#${item.href}`} onClick={() => setOpen(false)} sx={drawerLinkStyle}>
+                    {item.label}
+                  </Box>
+                )
+              )}
+            </Stack>
           </Box>
+        </Drawer>
+      )}
 
-          <Stack spacing={3} mt={4}>
-            {NavItems.map((item) =>
-              item.type === 'route' ? (
-                <Box key={item.label} component={Link} to={item.href} onClick={() => setOpen(false)} sx={drawerLinkStyle}>
-                  {item.label}
-                </Box>
-              ) : (
-                <Box key={item.label} component="a" href={`/#${item.href}`} onClick={() => setOpen(false)} sx={drawerLinkStyle}>
-                  {item.label}
-                </Box>
-              )
-            )}
-          </Stack>
-        </Box>
-      </Drawer>
       <NavigationLoader />
     </>
   );
