@@ -3,6 +3,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Footer from './components/layout/Footer';
+import ScrollToTop from './components/layout/ScrollToTop';
 import WhatsAppButton from './components/common/WhatsAppButton';
 
 import './global.css';
@@ -33,6 +34,7 @@ function App() {
         </Routes>
         <Footer />
         <WhatsAppButton />
+        <ScrollToTop />
       </BrowserRouter>
     </ThemeProvider>
   );

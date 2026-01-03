@@ -91,7 +91,7 @@ export default function Navbar() {
         onClose={() => setOpen(false)}
         PaperProps={{
           sx: {
-            width: '80%',
+            width: '40%',
             maxWidth: 300,
           },
         }}
