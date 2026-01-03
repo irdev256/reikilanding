@@ -90,22 +90,27 @@ export default function Content() {
           aside={
             <Box>
               <Typography variant="subtitle2" gutterBottom>
-                Un espacio sagrado
+                Lo que vas a vivir
               </Typography>
 
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                Un espacio de transformación interior, sostenido con amor, respeto y guía constante durante todo el proceso.
-              </Typography>
-
-              <Typography variant="body2" color="text.secondary">
-                Cada encuentro está pensado para acompañarte con cuidado y profundidad, respetando tus tiempos, tu sensibilidad y tu propio camino
-                espiritual.
-              </Typography>
+              <Box component="ul" sx={{ pl: 2, m: 0 }}>
+                {[
+                  'Acompañamiento espiritual consciente',
+                  'Desarrollo seguro de la mediumnidad',
+                  'Guía desde Dios, la Luz y la Fuente',
+                  'Espacio cuidado, amoroso y respetuoso',
+                  'Proceso profundo de transformación interior',
+                ].map((item) => (
+                  <Typography key={item} component="li" variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                    {item}
+                  </Typography>
+                ))}
+              </Box>
             </Box>
           }
         />
 
-        <Box sx={{ height: { xs: 80, md: 120 } }} />
+        <Box sx={{ height: { xs: 80, md: 100 } }} />
 
         <ContentBlock
           eyebrow="El proceso"
@@ -129,17 +134,22 @@ export default function Content() {
           aside={
             <Box>
               <Typography variant="subtitle2" gutterBottom>
-                Duración
+                Resultados del proceso
               </Typography>
 
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                4 meses de acompañamiento profundo y sostenido, con un proceso que se despliega de manera gradual y consciente.
-              </Typography>
-
-              <Typography variant="body2" color="text.secondary">
-                El trabajo no queda solo en los encuentros: se integra en tu vida diaria, acompañando cambios reales en tu percepción, energía y forma
-                de habitar tu camino.
-              </Typography>
+              <Box component="ul" sx={{ pl: 2, m: 0 }}>
+                {[
+                  'Conexión con tu guía espiritual',
+                  'Limpieza y protección energética',
+                  'Sanación del alma y del linaje',
+                  'Claridad sobre tu propósito',
+                  'Integración espiritual en la vida diaria',
+                ].map((item) => (
+                  <Typography key={item} component="li" variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                    {item}
+                  </Typography>
+                ))}
+              </Box>
             </Box>
           }
         />
