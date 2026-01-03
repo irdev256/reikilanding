@@ -2,14 +2,39 @@ import { useState } from 'react';
 import { Container, Typography, TextField, Button, Box, Stack, Alert } from '@mui/material';
 import Navbar from '../components/layout/Navbar';
 import { useLocation } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
 
 export default function Contacto() {
   const [submitted, setSubmitted] = useState(false);
   const location = useLocation();
   const [mensaje, setMensaje] = useState(() => location.state?.message ?? '');
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitted(true);
+    setSubmitted(false);
+
+    const formData = new FormData(event.currentTarget);
+
+    const templateParams = {
+      name: formData.get('nombre'),
+      email: formData.get('email'),
+      message: mensaje,
+    };
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      setSubmitted(true);
+      setMensaje('');
+      event.currentTarget.reset();
+    } catch (error) {
+      console.error(error);
+      alert('No se pudo enviar el mensaje.');
+    }
   };
 
   const textFieldSx = {
