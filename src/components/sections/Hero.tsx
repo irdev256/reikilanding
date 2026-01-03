@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography } from '@mui/material';
+import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import Navbar from '../layout/Navbar';
 
 export default function Hero() {
@@ -56,9 +56,14 @@ export default function Hero() {
             fontWeight={600}
             sx={{
               color: '#5B5450', // más contraste solo en hero
+              fontSize: {
+                xs: '2.6rem',
+                sm: '3.1rem',
+                md: '3.4rem',
+              },
             }}
           >
-            Lorem ipsum amet
+            Despertar con el Plan de tu Alma
           </Typography>
 
           {/* Subtítulo */}
@@ -69,19 +74,29 @@ export default function Hero() {
               maxWidth: 600,
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Mentoría espiritual para reconectar con tu luz, tu propósito y tu verdad.{' '}
           </Typography>
 
-          {/* Texto secundario */}
-          <Typography
-            variant="body1"
+          {/* CTA */}
+          <Button
+            variant="contained"
+            size="large"
             sx={{
-              color: '#8A817C',
-              maxWidth: 560,
+              textTransform: 'none',
+              px: 4,
+              py: 1.5,
+              width: 'fit-content',
+              fontWeight: 500,
+              color: '#9A6B1F', // ocre / girasol apagado
+              backgroundColor: '#FFF1D6', // arena muy clara
+              border: '1px solid #9A6B1F',
+              '&:hover': {
+                backgroundColor: '#ffe8b9ff', // amarillo girasol suave
+              },
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </Typography>
+            Quiero más información
+          </Button>
         </Stack>
       </Container>
     </Box>
