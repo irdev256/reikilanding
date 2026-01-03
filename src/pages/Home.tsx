@@ -1,4 +1,5 @@
 import Content from '../components/sections/Content';
+import FinalCTA from '../components/sections/FinalCta';
 import Hero from '../components/sections/Hero';
 import Links from '../components/sections/Links';
 import SobreMi from '../components/sections/SobreMi';
@@ -10,6 +11,7 @@ export default function Home() {
       <Hero />
       <Links />
       <Content />
+      <FinalCTA />
       <SobreMi />
       <Testimonials />
     </>
