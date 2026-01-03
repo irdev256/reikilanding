@@ -87,7 +87,13 @@ export default function FinalCTA() {
         </Typography>
 
         <Button
-          onClick={() => navigate('/contacto')}
+          onClick={() =>
+            navigate('/contacto', {
+              state: {
+                message: 'Hola, quiero recibir más información sobre la mentoría y dar el primer paso en mi camino espiritual.',
+              },
+            })
+          }
           variant="contained"
           sx={{
             textTransform: 'none',

@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Container, Typography, TextField, Button, Box, Stack, Alert } from '@mui/material';
 import Navbar from '../components/layout/Navbar';
+import { useLocation } from 'react-router-dom';
 
 export default function Contacto() {
   const [submitted, setSubmitted] = useState(false);
-
+  const location = useLocation();
+  const [mensaje, setMensaje] = useState(() => location.state?.message ?? '');
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitted(true);
@@ -102,7 +104,17 @@ export default function Contacto() {
 
             <TextField label="Email" name="email" type="email" required fullWidth sx={textFieldSx} />
 
-            <TextField label="Mensaje" name="mensaje" required fullWidth multiline rows={4} sx={textFieldSx} />
+            <TextField
+              label="Mensaje"
+              name="mensaje"
+              required
+              fullWidth
+              multiline
+              rows={4}
+              sx={textFieldSx}
+              value={mensaje}
+              onChange={(e) => setMensaje(e.target.value)}
+            />
 
             <Button
               type="submit"
