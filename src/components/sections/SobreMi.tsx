@@ -7,7 +7,7 @@ export default function SobreMi() {
       sx={{
         position: 'relative',
         py: { xs: 10, md: 16 },
-        backgroundImage: 'url(/portrait.jpg)',
+        backgroundImage: 'url(/close-up-woman.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
