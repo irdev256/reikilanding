@@ -1,7 +1,7 @@
 import Content from '../components/sections/Content';
 import Hero from '../components/sections/Hero';
 import Links from '../components/sections/Links';
-import MisInicios from '../components/sections/MisInicios';
+import SobreMi from '../components/sections/SobreMi';
 import Testimonials from '../components/sections/Testimonials';
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
       <Hero />
       <Links />
       <Content />
-      <MisInicios />
+      <SobreMi />
       <Testimonials />
     </>
   );

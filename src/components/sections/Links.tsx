@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { Grid } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 type LinkCardProps = {
   title: string;
@@ -15,7 +15,7 @@ function LinkCard({ title, subtitle, image, onClick }: LinkCardProps) {
       onClick={onClick}
       sx={{
         position: 'relative',
-        height: { xs: 220, md: 480 },
+        height: { xs: 240, md: 480 },
         cursor: 'pointer',
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover',
@@ -26,7 +26,7 @@ function LinkCard({ title, subtitle, image, onClick }: LinkCardProps) {
           content: '""',
           position: 'absolute',
           inset: 0,
-          backgroundColor: 'rgba(0,0,0,0.35)',
+          backgroundColor: 'rgba(0,0,0,0.4)',
           transition: 'background-color 0.3s ease',
         },
 
@@ -35,7 +35,7 @@ function LinkCard({ title, subtitle, image, onClick }: LinkCardProps) {
         },
 
         '&:hover .content': {
-          transform: 'scale(1.05)',
+          transform: 'scale(1.04)',
         },
       }}
     >
@@ -52,15 +52,37 @@ function LinkCard({ title, subtitle, image, onClick }: LinkCardProps) {
           textAlign: 'center',
           color: '#fff',
           transition: 'transform 0.3s ease',
-          px: 2,
+          px: 3,
         }}
       >
-        <Typography variant="h3" fontWeight={600}>
+        <Typography variant="h4" fontWeight={600} sx={{ mb: 1 }}>
           {title}
         </Typography>
 
+        {/* Separador */}
+        <Box
+          sx={{
+            width: 48,
+            height: 2,
+            backgroundColor: 'rgba(255,255,255,0.6)',
+            mb: 2,
+          }}
+        />
+
         {subtitle && (
-          <Typography variant="body2" sx={{ mt: 1, opacity: 0.85 }}>
+          <Typography
+            variant="body2"
+            sx={{
+              color: '#fff', // 🔑 fuerza blanco puro
+              maxWidth: 280,
+              lineHeight: 1.6,
+              px: 2,
+              py: 1,
+              borderRadius: 1,
+              backgroundColor: 'rgba(0,0,0,0.45)', // un poco más oscuro
+              backdropFilter: 'blur(2px)',
+            }}
+          >
             {subtitle}
           </Typography>
         )}
@@ -70,7 +92,7 @@ function LinkCard({ title, subtitle, image, onClick }: LinkCardProps) {
 }
 
 export default function Links() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <Box sx={{ position: 'relative', mt: 1 }}>
@@ -95,15 +117,29 @@ export default function Links() {
 
       <Grid container spacing={1} sx={{ position: 'relative', zIndex: 0 }}>
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <LinkCard title="Lorem 1" image="/link1.jpg" onClick={() => navigate('/lorem1')} />
+          <LinkCard
+            title="Sanación y Liberación"
+            subtitle="Suelta bloqueos emocionales y energéticos del pasado."
+            image="/link2.jpg"
+            // onClick={() => navigate('/sanacion')}
+          />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+          <LinkCard
+            title="Buscas tu propósito espiritual"
+            subtitle="Deseas encontrar el sentido profundo de tu existencia."
+            image="/link1.jpg"
+            // onClick={() => navigate('/proposito')}
+          />
         </Grid>
 
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <LinkCard title="Lorem 2" image="/link2.jpg" onClick={() => navigate('/lorem2')} />
-        </Grid>
-
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <LinkCard title="Lorem 3" subtitle="dolor sit amet" image="/link3.jpg" onClick={() => navigate('/lorem3')} />
+          <LinkCard
+            title="Claves para tu Camino"
+            subtitle="Herramientas para manifestar la vida que deseas."
+            image="/link3.jpg"
+            // onClick={() => navigate('/camino')}
+          />
         </Grid>
       </Grid>
     </Box>
