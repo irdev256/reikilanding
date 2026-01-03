@@ -25,11 +25,10 @@ const testimonials: Testimonial[] = [
 export default function Testimonials() {
   const [active, setActive] = useState(0);
 
-  /* autoplay */
   useEffect(() => {
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, []);
@@ -39,100 +38,107 @@ export default function Testimonials() {
       id={HomeSection.TESTIMONIALS}
       sx={{
         position: 'relative',
-        minHeight: { xs: 520, md: 680 },
-        display: 'flex',
-        alignItems: 'center',
-        backgroundImage: 'url(/bg-testimonials.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center top',
+        py: { xs: 12, md: 16 },
+        overflow: 'hidden',
       }}
     >
-      {/* Overlay blanco */}
+      {/* Fondo luminoso principal */}
       <Box
         sx={{
           position: 'absolute',
           inset: 0,
-          backgroundColor: 'rgba(255,255,255,0.48)',
+          background: `
+        radial-gradient(
+          circle at top,
+          rgba(255,255,255,0.92) 0%,
+          rgba(254,252,250,0.95) 55%,
+          rgba(234,223,204,0.96) 100%
+        )
+      `,
+        }}
+      />
+
+      {/* Toque dorado espiritual */}
+      <Box
+        sx={{
+          position: 'absolute',
+          inset: 0,
+          background: `
+        linear-gradient(
+          120deg,
+          rgba(200,164,93,0.08),
+          transparent 40%,
+          rgba(200,164,93,0.06)
+        )
+      `,
+          pointerEvents: 'none',
         }}
       />
 
       <Container maxWidth="md" sx={{ position: 'relative', textAlign: 'center' }}>
-        <Typography variant="h4" fontWeight={600}>
+        <Typography variant="h4" fontWeight={600} sx={{ mb: 6 }}>
           Testimonios
         </Typography>
 
         {/* Slider */}
         <Box
           sx={{
-            mt: 6,
-            overflow: 'hidden',
+            position: 'relative',
+            height: { xs: 260, md: 220 },
           }}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              width: `${testimonials.length * 100}%`,
-              transform: `translateX(-${active * (100 / testimonials.length)}%)`,
-              transition: 'transform 0.6s ease',
-            }}
-          >
-            {testimonials.map((item, index) => (
+          {testimonials.map((item, index) => {
+            const isActive = index === active;
+
+            return (
               <Box
                 key={index}
                 sx={{
-                  width: `${100 / testimonials.length}%`,
-                  px: { xs: 2, md: 4 },
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  px: { xs: 4, md: 6 },
+                  borderRadius: 3,
+                  backgroundColor: 'rgba(255,255,255,0.75)',
+                  border: '1px solid rgba(200,164,93,0.25)',
+
+                  opacity: isActive ? 1 : 0,
+                  transform: isActive ? 'translateX(0)' : 'translateX(-12px)',
+                  transition: 'opacity 1s ease-in-out, transform 1s ease-in-out',
+                  pointerEvents: isActive ? 'auto' : 'none',
                 }}
               >
-                <Box
+                <Typography
                   sx={{
-                    backgroundColor: '#fff',
-                    borderRadius: 2,
-                    px: { xs: 3, md: 6 },
-                    py: { xs: 4, md: 5 },
-                    boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
-                    minHeight: 180,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
+                    fontSize: 48,
+                    lineHeight: 1,
+                    color: '#C8A45D',
+                    opacity: 0.5,
+                    mb: 1,
                   }}
                 >
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontStyle: 'italic',
-                      color: 'text.secondary',
-                      mb: 3,
-                    }}
-                  >
-                    “{item.text}”
-                  </Typography>
+                  “
+                </Typography>
 
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    {item.author}
-                  </Typography>
-                </Box>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontStyle: 'italic',
+                    color: 'text.secondary',
+                    mb: 4,
+                  }}
+                >
+                  {item.text}
+                </Typography>
+
+                <Typography variant="subtitle2" fontWeight={600}>
+                  {item.author}
+                </Typography>
               </Box>
-            ))}
-          </Box>
-        </Box>
-
-        {/* Dots */}
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4, gap: 1.5 }}>
-          {testimonials.map((_, index) => (
-            <Box
-              key={index}
-              onClick={() => setActive(index)}
-              sx={{
-                width: 10,
-                height: 10,
-                borderRadius: '50%',
-                cursor: 'pointer',
-                backgroundColor: index === active ? '#e46b61' : '#ccc',
-                transition: 'background-color 0.3s ease',
-              }}
-            />
-          ))}
+            );
+          })}
         </Box>
       </Container>
     </Box>
