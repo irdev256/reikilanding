@@ -59,7 +59,7 @@ export default function Hero() {
               fontSize: {
                 xs: '2.6rem',
                 sm: '3.1rem',
-                md: '3.4rem',
+                md: '4rem',
               },
             }}
           >
