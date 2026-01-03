@@ -1,6 +1,6 @@
 export const HomeSection = {
   HERO: 'inicio',
-  CONTENT: 'contentido',
+  CONTENT: 'mentoria',
   SOBRE_MI: 'sobre-mi',
   TESTIMONIALS: 'testimonios',
 };

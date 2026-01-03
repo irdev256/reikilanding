@@ -58,7 +58,7 @@ export default function Contacto() {
         maxWidth="sm"
         sx={{
           position: 'relative',
-          pt: 14, // 👈 compensa AppBar fixed
+          pt: { xs: 5, md: 14 },
           pb: 10,
         }}
       >

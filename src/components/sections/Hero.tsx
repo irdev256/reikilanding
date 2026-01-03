@@ -81,6 +81,8 @@ export default function Hero() {
 
           {/* CTA */}
           <Button
+            component="a"
+            href={`/#${HomeSection.CONTENT}`}
             variant="contained"
             size="large"
             sx={{
