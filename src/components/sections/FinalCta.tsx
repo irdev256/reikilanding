@@ -9,8 +9,6 @@ export default function FinalCTA() {
       sx={{
         position: 'relative',
         py: { xs: 12, md: 16 },
-        backgroundImage: 'url(/bg-cta.jpg)',
-        backgroundSize: 'cover',
         backgroundPosition: 'center',
         overflow: 'hidden',
       }}
