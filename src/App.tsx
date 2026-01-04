@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/layout/ScrollToTop';
+import MusicButton from './components/common/MusicButton';
 import WhatsAppButton from './components/common/WhatsAppButton';
 
 import './global.css';
@@ -33,6 +34,7 @@ function App() {
           <Route path={PageRoutes.CONTACTO} element={<Contacto />} />
         </Routes>
         <Footer />
+        <MusicButton />
         <WhatsAppButton />
         <ScrollToTop />
       </BrowserRouter>
