@@ -1,9 +1,10 @@
 import { Box, Container, Grid, Link, Stack, Typography, IconButton } from '@mui/material';
 
 import InstagramIcon from '@mui/icons-material/Instagram';
-import FacebookIcon from '@mui/icons-material/Facebook';
+// import FacebookIcon from '@mui/icons-material/Facebook';
 
-import { CLIENT_INSTAGRAM_LINK, GOOGLE_MAPS_LINK, OUR_WHATSAPP_LINK } from '../../helpers/constants';
+import { CLIENT_INSTAGRAM_LINK, CLIENT_TIKTOK_LINK, OUR_WHATSAPP_LINK } from '../../helpers/constants';
+import TikTokIcon from '../icons/TikTokIcon';
 
 export default function Footer() {
   return (
@@ -59,18 +60,18 @@ export default function Footer() {
                 Contactame
               </Typography>
 
-              <Link href="tel:+541112345678" underline="none" color="text.secondary">
-                +54 11 1234 5678
+              <Link href="tel:+541160482048" underline="none" color="text.secondary">
+                +54 1160482048
               </Link>
 
-              <Link href="mailto:contacto@email.com" underline="none" color="text.secondary">
-                contacto@email.com
+              <Link href="mailto:aleinty.gonzalez@gmail.com" underline="none" color="text.secondary">
+                aleinty.gonzalez@gmail.com
               </Link>
             </Stack>
           </Grid>
 
           {/* Ubicación */}
-          <Grid size={{ xs: 12, md: 3 }}>
+          {/* <Grid size={{ xs: 12, md: 3 }}>
             <Stack spacing={1.2} alignItems={{ xs: 'center', md: 'flex-start' }}>
               <Typography variant="h6" fontWeight={500}>
                 Ubicación
@@ -96,7 +97,7 @@ export default function Footer() {
                 📍 Av. Córdoba 3621 - Palermo
               </Link>
             </Stack>
-          </Grid>
+          </Grid> */}
 
           {/* Seguime en */}
           <Grid size={{ xs: 12, md: 3 }}>
@@ -121,6 +122,19 @@ export default function Footer() {
 
                 <IconButton
                   component="a"
+                  href={CLIENT_TIKTOK_LINK}
+                  target="_blank"
+                  sx={{
+                    color: 'text.secondary',
+                    '&:hover': { color: '#9A6B1F' },
+                  }}
+                  aria-label="TikTok de Alejandrina González"
+                >
+                  <TikTokIcon />
+                </IconButton>
+
+                {/* <IconButton
+                  component="a"
                   href="#"
                   target="_blank"
                   sx={{
@@ -130,7 +144,7 @@ export default function Footer() {
                   aria-label="Facebook de Alejandrina González"
                 >
                   <FacebookIcon />
-                </IconButton>
+                </IconButton> */}
               </Stack>
             </Stack>
           </Grid>
