@@ -6,6 +6,8 @@ export default function SobreMi() {
     <Box
       id={HomeSection.SOBRE_MI}
       component="section"
+      role="img"
+      aria-label="Retrato de Alejandrina González, médium consciente y guía espiritual, en un entorno natural con girasoles"
       sx={{
         position: 'relative',
         py: { xs: 10, md: 16 },
@@ -43,6 +45,7 @@ export default function SobreMi() {
         {/* Título */}
         <Typography
           variant="h2"
+          component="h2"
           align="center"
           sx={{
             color: '#fff',
@@ -54,15 +57,37 @@ export default function SobreMi() {
 
         {/* Texto */}
         <Typography variant="body1" paragraph sx={{ color: 'rgba(255,255,255,0.95)' }}>
-          Soy Alejandrina González, médium consciente y guía espiritual. Desde muy pequeña sentí la presencia de la Luz, pero fue a través de mi
-          propia historia —pérdidas, crisis, renacimientos y despertares— que comprendí que cada experiencia tenía un propósito mayor. Aprendí que el
-          dolor no llega para castigarnos, sino para recordarnos quiénes somos cuando volvemos a mirarnos desde el alma.
+          Soy Alejandrina González, médium consciente y guía espiritual especializada en mentoría espiritual consciente. Desde muy pequeña sentí la
+          presencia de la Luz, pero fue a través de mi propia historia —pérdidas, crisis, renacimientos y despertares— que comprendí que cada
+          experiencia tenía un propósito mayor. Aprendí que el dolor no llega para castigarnos, sino para recordarnos quiénes somos cuando volvemos a
+          mirarnos desde el alma.
         </Typography>
-
+        <Typography
+          variant="h5"
+          component="h3"
+          sx={{
+            color: '#fff',
+            mt: 5,
+            mb: 2,
+          }}
+        >
+          Mi camino espiritual
+        </Typography>
         <Typography variant="body1" paragraph sx={{ color: 'rgba(255,255,255,0.9)' }}>
           En ese camino de búsqueda y entrega, desarrollé mi mediumnidad como un puente de amor entre el cielo y la tierra, entendiendo que todos
           tenemos la capacidad de escuchar, sentir y recordar nuestra conexión con la Fuente. Mi proceso personal me enseñó a confiar, a soltar el
           miedo y a vivir desde la fe, incluso en los momentos más oscuros.
+        </Typography>
+        <Typography
+          variant="h5"
+          component="h3"
+          sx={{
+            color: '#fff',
+            mt: 5,
+            mb: 2,
+          }}
+        >
+          Mi misión como guía espiritual
         </Typography>
 
         <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.85)' }}>

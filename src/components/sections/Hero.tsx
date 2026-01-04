@@ -6,6 +6,8 @@ export default function Hero() {
   return (
     <Box
       id={HomeSection.HERO}
+      aria-label="Mujer en meditación conectando con su energía interior durante una mentoría espiritual consciente"
+      role="img"
       sx={{
         minHeight: '100vh',
         position: 'relative',
@@ -87,6 +89,7 @@ export default function Hero() {
           {/* Subtítulo */}
           <Typography
             variant="h5"
+            component="p"
             sx={{
               color: '#6B6460',
               maxWidth: 600,

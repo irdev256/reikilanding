@@ -3,6 +3,7 @@ import { Container, Typography, TextField, Button, Box, Stack, Alert } from '@mu
 import Navbar from '../components/layout/Navbar';
 import { useLocation } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
+import { Helmet } from 'react-helmet-async';
 
 export default function Contacto() {
   const [submitted, setSubmitted] = useState(false);
@@ -58,111 +59,143 @@ export default function Contacto() {
   };
 
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        minHeight: '100vh',
-        overflow: 'hidden',
-      }}
-    >
-      <Navbar />
+    <>
+      <Helmet>
+        <title>Contacto | Mentoría espiritual con Alejandrina González</title>
+      </Helmet>
 
-      {/* Overlay principal (IGUAL al FinalCTA) */}
       <Box
-        sx={{
-          position: 'absolute',
-          inset: 0,
-          background: `
-            radial-gradient(
-              circle at top,
-              rgba(255,255,255,0.92) 0%,
-              rgba(254,252,250,0.95) 55%,
-              rgba(234,223,204,0.96) 100%
-            )
-          `,
-        }}
-      />
-
-      {/* Detalles sutiles de luz */}
-      <Box
-        sx={{
-          position: 'absolute',
-          inset: 0,
-          background: `
-            linear-gradient(
-              120deg,
-              rgba(200,164,93,0.08),
-              transparent 40%,
-              rgba(200,164,93,0.06)
-            )
-          `,
-          pointerEvents: 'none',
-        }}
-      />
-
-      {/* Contenido */}
-      <Container
-        maxWidth="sm"
         sx={{
           position: 'relative',
-          pt: { xs: 5, md: 14 },
-          pb: 10,
+          minHeight: '100vh',
+          overflow: 'hidden',
         }}
       >
-        <Typography variant="h3" gutterBottom sx={{ color: '#6E5B3E' }}>
-          Contacto
-        </Typography>
+        <Navbar />
 
-        <Typography variant="body1" sx={{ mb: 3, color: '#7A6F63' }}>
-          Si tenés alguna consulta o querés coordinar una charla, completá el formulario y nos contactaremos a la brevedad.
-        </Typography>
+        {/* Overlay principal (IGUAL al FinalCTA) */}
+        <Box
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            background: `
+          radial-gradient(
+            circle at top,
+            rgba(255,255,255,0.92) 0%,
+            rgba(254,252,250,0.95) 55%,
+            rgba(234,223,204,0.96) 100%
+            )
+            `,
+          }}
+        />
 
-        {submitted && (
-          <Alert severity="success" sx={{ mb: 3 }}>
-            ¡Gracias por tu mensaje! Te responderemos a la brevedad.
-          </Alert>
-        )}
+        {/* Detalles sutiles de luz */}
+        <Box
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            background: `
+          linear-gradient(
+            120deg,
+            rgba(200,164,93,0.08),
+            transparent 40%,
+            rgba(200,164,93,0.06)
+            )
+            `,
+            pointerEvents: 'none',
+          }}
+        />
 
-        <Box component="form" onSubmit={handleSubmit} noValidate>
-          <Stack spacing={3}>
-            <TextField label="Nombre" name="nombre" required fullWidth sx={textFieldSx} />
+        {/* Contenido */}
+        <Container
+          maxWidth="sm"
+          sx={{
+            position: 'relative',
+            pt: { xs: 5, md: 14 },
+            pb: 10,
+          }}
+        >
+          <Typography variant="h2" component="h1" gutterBottom sx={{ color: '#6E5B3E' }}>
+            Contacto
+          </Typography>
 
-            <TextField label="Email" name="email" type="email" required fullWidth sx={textFieldSx} />
+          <Typography variant="body1" sx={{ mb: 3, color: '#7A6F63' }}>
+            Si tenés alguna consulta o querés coordinar una charla, completá el formulario y nos contactaremos a la brevedad.
+          </Typography>
 
-            <TextField
-              label="Mensaje"
-              name="mensaje"
-              required
-              fullWidth
-              multiline
-              rows={4}
-              sx={textFieldSx}
-              value={mensaje}
-              onChange={(e) => setMensaje(e.target.value)}
-            />
+          {submitted && (
+            <Alert severity="success" sx={{ mb: 3 }}>
+              ¡Gracias por tu mensaje! Te responderemos a la brevedad.
+            </Alert>
+          )}
 
-            <Button
-              type="submit"
-              variant="contained"
-              size="large"
-              sx={{
-                textTransform: 'none',
-                px: 4,
-                py: 1.5,
-                fontWeight: 500,
-                color: '#9A6B1F',
-                backgroundColor: '#FFF1D6',
-                border: '1px solid #9A6B1F',
-                '&:hover': {
-                  backgroundColor: '#ffe8b9ff',
-                },
-              }}
-            >
-              Enviar mensaje
-            </Button>
-          </Stack>
-        </Box>
-      </Container>
-    </Box>
+          <Box component="form" onSubmit={handleSubmit} noValidate>
+            <Stack spacing={3}>
+              <TextField
+                label="Nombre"
+                name="nombre"
+                slotProps={{
+                  htmlInput: { 'aria-label': 'Nombre completo' },
+                }}
+                required
+                fullWidth
+                sx={textFieldSx}
+              />
+
+              <TextField
+                label="Email"
+                name="email"
+                slotProps={{
+                  htmlInput: {
+                    'aria-label': 'Correo electrónico de contacto',
+                  },
+                }}
+                type="email"
+                required
+                fullWidth
+                sx={textFieldSx}
+              />
+
+              <TextField
+                label="Mensaje"
+                name="mensaje"
+                slotProps={{
+                  htmlInput: {
+                    'aria-label': 'Mensaje de contacto',
+                  },
+                }}
+                required
+                fullWidth
+                multiline
+                rows={4}
+                sx={textFieldSx}
+                value={mensaje}
+                onChange={(e) => setMensaje(e.target.value)}
+              />
+
+              <Button
+                type="submit"
+                variant="contained"
+                size="large"
+                sx={{
+                  textTransform: 'none',
+                  px: 4,
+                  py: 1.5,
+                  fontWeight: 500,
+                  color: '#9A6B1F',
+                  backgroundColor: '#FFF1D6',
+                  border: '1px solid #9A6B1F',
+                  '&:hover': {
+                    backgroundColor: '#ffe8b9ff',
+                  },
+                }}
+              >
+                Enviar mensaje
+              </Button>
+            </Stack>
+          </Box>
+        </Container>
+      </Box>
+    </>
   );
 }

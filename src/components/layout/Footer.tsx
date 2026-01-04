@@ -59,7 +59,7 @@ export default function Footer() {
                 Contactame
               </Typography>
 
-              <Link href={OUR_WHATSAPP_LINK} target="_blank" underline="none" color="text.secondary">
+              <Link href="tel:+541112345678" underline="none" color="text.secondary">
                 +54 11 1234 5678
               </Link>
 
@@ -114,6 +114,7 @@ export default function Footer() {
                     color: 'text.secondary',
                     '&:hover': { color: '#9A6B1F' },
                   }}
+                  aria-label="Instagram de Alejandrina González"
                 >
                   <InstagramIcon />
                 </IconButton>
@@ -126,6 +127,7 @@ export default function Footer() {
                     color: 'text.secondary',
                     '&:hover': { color: '#9A6B1F' },
                   }}
+                  aria-label="Facebook de Alejandrina González"
                 >
                   <FacebookIcon />
                 </IconButton>

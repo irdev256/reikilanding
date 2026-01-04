@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import Content from '../components/sections/Content';
 import FinalCTA from '../components/sections/FinalCta';
 import Hero from '../components/sections/Hero';
@@ -8,6 +9,10 @@ import Testimonials from '../components/sections/Testimonials';
 export default function Home() {
   return (
     <>
+      <Helmet>
+        <title>Mentoría espiritual consciente | Alejandrina González</title>
+      </Helmet>
+
       <Hero />
       <Links />
       <Content />

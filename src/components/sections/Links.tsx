@@ -7,12 +7,15 @@ type LinkCardProps = {
   subtitle?: string;
   image: string;
   onClick?: () => void;
+  ariaLabel: string;
 };
 
-function LinkCard({ title, subtitle, image, onClick }: LinkCardProps) {
+function LinkCard({ title, subtitle, image, onClick, ariaLabel }: LinkCardProps) {
   return (
     <Box
       onClick={onClick}
+      role="img"
+      aria-label={ariaLabel}
       sx={{
         position: 'relative',
         height: { xs: 240, md: 480 },
@@ -55,7 +58,7 @@ function LinkCard({ title, subtitle, image, onClick }: LinkCardProps) {
           px: 3,
         }}
       >
-        <Typography variant="h4" fontWeight={600} sx={{ mb: 1 }}>
+        <Typography variant="h4" component="p" fontWeight={600} sx={{ mb: 1 }}>
           {title}
         </Typography>
 
@@ -121,6 +124,8 @@ export default function Links() {
             title="Sanación y Liberación"
             subtitle="Suelta bloqueos emocionales y energéticos del pasado."
             image="/person-conducting-reiki-therapy.jpg"
+            ariaLabel="Sesión de sanación energética y liberación emocional durante una mentoría espiritual consciente"
+
             // onClick={() => navigate('/sanacion')}
           />
         </Grid>
@@ -129,6 +134,8 @@ export default function Links() {
             title="Buscas tu propósito espiritual"
             subtitle="Deseas encontrar el sentido profundo de tu existencia."
             image="/link1.jpg"
+            ariaLabel="Espacio de meditación y búsqueda del propósito espiritual y sentido de vida"
+
             // onClick={() => navigate('/proposito')}
           />
         </Grid>
@@ -138,6 +145,8 @@ export default function Links() {
             title="Claves para tu Camino"
             subtitle="Herramientas para manifestar la vida que deseas."
             image="/link3.jpg"
+            ariaLabel="Herramientas espirituales para manifestar una vida consciente y alineada con el alma"
+
             // onClick={() => navigate('/camino')}
           />
         </Grid>

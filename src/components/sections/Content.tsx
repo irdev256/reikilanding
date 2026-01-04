@@ -16,6 +16,7 @@ function ContentBlock({ eyebrow, title, content, aside, reverse }: ContentBlockP
       {/* Texto principal */}
       <Grid size={{ xs: 12, md: 6 }}>
         <Typography
+          component="p"
           sx={{
             textTransform: 'uppercase',
             fontSize: 12,
@@ -27,7 +28,7 @@ function ContentBlock({ eyebrow, title, content, aside, reverse }: ContentBlockP
           {eyebrow}
         </Typography>
 
-        <Typography variant="h4" fontWeight={600} gutterBottom sx={{ color: '#6E5B3E' }}>
+        <Typography variant="h4" component="h2" fontWeight={600} gutterBottom sx={{ color: '#6E5B3E' }}>
           {title}
         </Typography>
 
@@ -76,7 +77,7 @@ export default function Content() {
       <Container maxWidth="lg" sx={{ position: 'relative' }}>
         <ContentBlock
           eyebrow="La experiencia"
-          title="¿Qué es esta mentoría?"
+          title="¿Qué es esta mentoría espiritual?"
           content={
             <>
               <Typography variant="body1" sx={{ mb: 3 }}>
@@ -116,7 +117,7 @@ export default function Content() {
 
         <ContentBlock
           eyebrow="El proceso"
-          title="¿Qué trabajamos?"
+          title="¿Qué trabajamos en esta mentoría espiritual?"
           reverse
           content={
             <>

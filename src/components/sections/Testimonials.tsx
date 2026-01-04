@@ -36,6 +36,7 @@ export default function Testimonials() {
   return (
     <Box
       id={HomeSection.TESTIMONIALS}
+      component="section"
       sx={{
         position: 'relative',
         py: { xs: 12, md: 16 },
@@ -124,6 +125,7 @@ export default function Testimonials() {
 
                 <Typography
                   variant="body1"
+                  component="blockquote"
                   sx={{
                     fontStyle: 'italic',
                     color: 'text.secondary',
@@ -133,7 +135,7 @@ export default function Testimonials() {
                   {item.text}
                 </Typography>
 
-                <Typography variant="subtitle2" fontWeight={600}>
+                <Typography variant="subtitle2" component="cite" fontWeight={600}>
                   {item.author}
                 </Typography>
               </Box>
