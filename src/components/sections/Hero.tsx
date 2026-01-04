@@ -49,7 +49,9 @@ export default function Hero() {
           sx={{
             textAlign: { xs: 'center', md: 'left' },
             pb: { xs: 4, md: 10 },
-            pr: { md: 16 },
+            pr: { md: 16, xs: 3 },
+            mx: { xs: 'auto', md: 0 },
+            mt: { xs: -5, sm: -4, md: 0 },
           }}
         >
           {/* Título */}
@@ -78,6 +80,7 @@ export default function Hero() {
           >
             Mentoría espiritual para reconectar con tu luz, tu propósito y tu verdad.{' '}
           </Typography>
+          <Box sx={{ height: { xs: 80, sm: 0 } }} />
 
           {/* CTA */}
           <Button
@@ -91,11 +94,14 @@ export default function Hero() {
               py: 1.5,
               width: 'fit-content',
               fontWeight: 500,
-              color: '#9A6B1F', // ocre / girasol apagado
-              backgroundColor: '#FFF1D6', // arena muy clara
+              color: '#9A6B1F',
+              backgroundColor: '#FFF1D6',
               border: '1px solid #9A6B1F',
+              mx: { xs: 'auto', md: 0 },
+              alignSelf: { xs: 'center', md: 'flex-start' },
+
               '&:hover': {
-                backgroundColor: '#ffe8b9ff', // amarillo girasol suave
+                backgroundColor: '#ffe8b9ff',
               },
             }}
           >
