@@ -11,7 +11,10 @@ export default function Hero() {
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
-        backgroundImage: 'url(/hero-bg-1.png)',
+        backgroundImage: {
+          xs: 'url(/hero-bg-2.png)', // mobile
+          sm: 'url(/hero-bg-1.png)', // tablet en adelante
+        },
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -22,15 +25,26 @@ export default function Hero() {
           position: 'absolute',
           inset: 0,
           backdropFilter: 'saturate(105%)',
-          background: `
-      linear-gradient(
-        90deg,
-        rgba(254,252,250,0.85) 0%,
-        rgba(234,223,204,0.55) 40%,
-        rgba(242,198,204,0.22) 65%,
-        rgba(242,198,204,0.10) 100%
-      )
-    `,
+          background: {
+            xs: `
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,0.78) 0%,
+          rgba(255,255,255,0.70) 35%,
+          rgba(255,255,255,0.48) 55%,
+          rgba(255,255,255,0.18) 100%
+        )
+      `,
+            sm: `
+        linear-gradient(
+          90deg,
+          rgba(254,252,250,0.85) 0%,
+          rgba(234,223,204,0.55) 40%,
+          rgba(242,198,204,0.22) 65%,
+          rgba(242,198,204,0.10) 100%
+        )
+      `,
+          },
         }}
       />
 
