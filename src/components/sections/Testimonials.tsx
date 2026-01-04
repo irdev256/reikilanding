@@ -4,21 +4,27 @@ import { HomeSection } from '../../helpers/constants';
 
 type Testimonial = {
   text: string;
-  author: string;
+  // author: string;
 };
 
 const testimonials: Testimonial[] = [
   {
-    text: 'La mentoría me ayudó a aceptar todo lo que pasé y todo lo que sufrí, para poder mostrarle a otros que sí se puede sanar.',
-    author: 'Leonela Acosta',
+    text: 'Gracias por estar y acompañarme siempre. Gracias por todo 💜 Siento profundamente que esta mentoría, de tu mano, tiene que llegar a todo el mundo.',
   },
   {
-    text: 'Este proceso me permitió reconectar conmigo mismo y entender que el camino de sanación es posible.',
-    author: 'Marcos Fernández',
+    text: 'Gracias, Ale. Lloré todo, pero me sentí aliviada. Es muy lindo no sentirse sola al contar mi historia.',
   },
   {
-    text: 'Aprendí herramientas reales para acompañar a otros desde un lugar consciente y amoroso.',
-    author: 'Sofía Martínez',
+    text: 'Ale, mostrás la luz más grande de la Tierra. Mentora de almas en evolución, amor y luz.',
+  },
+  {
+    text: 'Gracias, Ale. De verdad siento que, si no hubiera sido por la mentoría, no hubiese podido disfrutar ni mucho menos festejar.',
+  },
+  {
+    text: 'Anoche soñé con vos. Estaba acostada con el cuerpo cubierto de pétalos de rosas y me decías que siga, que lo estaba haciendo bien. No lo sentí como algo malo, sino como el final y un nuevo comienzo. Cada día voy aprendiendo más y entendiendo cada situación.',
+  },
+  {
+    text: 'Hice la meditación y entendí que mi ángel fuiste vos todo este tiempo. Estoy profundamente agradecida. Gracias por tanto, Ale.',
   },
 ];
 
@@ -134,13 +140,73 @@ export default function Testimonials() {
                 >
                   {item.text}
                 </Typography>
-
-                <Typography variant="subtitle2" component="cite" fontWeight={600}>
-                  {item.author}
-                </Typography>
               </Box>
             );
           })}
+        </Box>
+        {/* Fotos de encuentros reales */}
+        <Box sx={{ mt: { xs: 8, md: 10 } }}>
+          <Typography
+            variant="body2"
+            sx={{
+              mb: 3,
+              color: '#7A6F63',
+              fontStyle: 'italic',
+            }}
+          >
+            Encuentros presenciales de mentoría y acompañamiento consciente
+          </Typography>
+
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+              gap: 3,
+            }}
+          >
+            {[
+              {
+                src: '/memoria-1.jpeg',
+                alt: 'Encuentro grupal de mentoría espiritual en un espacio de conexión',
+              },
+              {
+                src: '/memoria-2.jpeg',
+                alt: 'Participantes compartiendo un momento de mentoría espiritual consciente',
+              },
+            ].map((img) => (
+              <Box
+                key={img.src}
+                sx={{
+                  position: 'relative',
+                  overflow: 'hidden',
+                  borderRadius: 3,
+                  boxShadow: '0 18px 40px rgba(176, 142, 162, 0.25)',
+                }}
+              >
+                <Box
+                  component="img"
+                  src={img.src}
+                  alt={img.alt}
+                  sx={{
+                    display: 'block',
+                    width: '100%',
+                    height: { xs: 240, md: 300 },
+                    objectFit: 'cover',
+                    filter: 'saturate(95%)',
+                  }}
+                />
+
+                {/* Overlay sutil */}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.35))',
+                  }}
+                />
+              </Box>
+            ))}
+          </Box>
         </Box>
       </Container>
     </Box>
