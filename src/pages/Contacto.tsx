@@ -1,17 +1,20 @@
 import { useState } from 'react';
-import { Container, Typography, TextField, Button, Box, Stack, Alert } from '@mui/material';
+import { Container, Typography, TextField, Button, Box, Stack, Alert, CircularProgress } from '@mui/material';
 import Navbar from '../components/layout/Navbar';
 import { useLocation } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import { Helmet } from 'react-helmet-async';
 
 export default function Contacto() {
-  const [submitted, setSubmitted] = useState(false);
   const location = useLocation();
+  const [isSending, setIsSending] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [mensaje, setMensaje] = useState(() => location.state?.message ?? '');
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitted(false);
+    setIsSending(true);
 
     const formData = new FormData(event.currentTarget);
 
@@ -31,31 +34,12 @@ export default function Contacto() {
 
       setSubmitted(true);
       setMensaje('');
-      event.currentTarget.reset();
     } catch (error) {
       console.error(error);
       alert('No se pudo enviar el mensaje.');
+    } finally {
+      setIsSending(false);
     }
-  };
-
-  const textFieldSx = {
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: '#CFC5B8', // borde normal
-      },
-      '&:hover fieldset': {
-        borderColor: '#B8AA96',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: '#C8A45D', // 🔑 dorado suave (como el CTA)
-      },
-    },
-    '& .MuiInputLabel-root': {
-      color: '#7A6F63',
-      '&.Mui-focused': {
-        color: '#6E5B3E', // label en focus
-      },
-    },
   };
 
   return (
@@ -177,6 +161,7 @@ export default function Contacto() {
                 type="submit"
                 variant="contained"
                 size="large"
+                disabled={isSending}
                 sx={{
                   textTransform: 'none',
                   px: 4,
@@ -185,12 +170,17 @@ export default function Contacto() {
                   color: '#9A6B1F',
                   backgroundColor: '#FFF1D6',
                   border: '1px solid #9A6B1F',
+                  minHeight: 48,
                   '&:hover': {
                     backgroundColor: '#ffe8b9ff',
                   },
+                  '&.Mui-disabled': {
+                    backgroundColor: '#FFF1D6',
+                    opacity: 0.7,
+                  },
                 }}
               >
-                Enviar mensaje
+                {isSending ? <CircularProgress size={22} thickness={4} sx={{ color: '#9A6B1F' }} /> : 'Enviar mensaje'}
               </Button>
             </Stack>
           </Box>
@@ -199,3 +189,25 @@ export default function Contacto() {
     </>
   );
 }
+
+// ------------------------------------
+
+const textFieldSx = {
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#CFC5B8', // borde normal
+    },
+    '&:hover fieldset': {
+      borderColor: '#B8AA96',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#C8A45D', // 🔑 dorado suave (como el CTA)
+    },
+  },
+  '& .MuiInputLabel-root': {
+    color: '#7A6F63',
+    '&.Mui-focused': {
+      color: '#6E5B3E', // label en focus
+    },
+  },
+};
