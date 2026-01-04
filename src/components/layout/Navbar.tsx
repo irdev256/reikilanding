@@ -50,7 +50,7 @@ export default function Navbar() {
           >
             <Box
               component="img"
-              src="/sunflower.png"
+              src="/sunflower1.png"
               alt="Girasol"
               sx={{
                 width: 28,

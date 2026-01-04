@@ -120,7 +120,7 @@ export default function Links() {
           <LinkCard
             title="Sanación y Liberación"
             subtitle="Suelta bloqueos emocionales y energéticos del pasado."
-            image="/link2.jpg"
+            image="/person-conducting-reiki-therapy.jpg"
             // onClick={() => navigate('/sanacion')}
           />
         </Grid>

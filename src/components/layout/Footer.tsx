@@ -40,7 +40,7 @@ export default function Footer() {
 
               <Box
                 component="img"
-                src="/sunflower.png"
+                src="/sunflower1.png"
                 alt="Girasol"
                 sx={{
                   width: 45,

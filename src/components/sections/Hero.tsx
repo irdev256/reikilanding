@@ -11,7 +11,7 @@ export default function Hero() {
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
-        backgroundImage: 'url(/hero-bg.jpg)',
+        backgroundImage: 'url(/hero-bg-1.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
