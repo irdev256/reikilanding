@@ -88,9 +88,11 @@ export default function Navbar() {
           </Stack>
 
           {/* Mobile menu button */}
-          <IconButton onClick={() => setOpen(true)} sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <MenuIcon />
-          </IconButton>
+          {hasNavItems && (
+            <IconButton onClick={() => setOpen(true)} sx={{ display: { xs: 'flex', md: 'none' } }}>
+              <MenuIcon />
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
 
