@@ -61,9 +61,6 @@ export default function Content() {
       sx={{
         position: 'relative',
         py: { xs: 10, md: 14 },
-        backgroundImage: 'url(/bg-content-section.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
       }}
     >
       <Box
