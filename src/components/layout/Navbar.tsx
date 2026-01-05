@@ -69,7 +69,7 @@ export default function Navbar() {
                 whiteSpace: 'nowrap',
               }}
             >
-              Alejandrina Gonzalez
+              Alejandrina González
             </Typography>
           </Box>
 

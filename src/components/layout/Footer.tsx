@@ -19,10 +19,11 @@ export default function Footer() {
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={{ xs: 4, md: 6 }} textAlign={{ xs: 'center', md: 'left' }}>
+        <Grid container spacing={{ xs: 4, md: 6 }} textAlign={{ xs: 'center', md: 'left' }} justifyContent="center">
+          {' '}
           {/* Marca */}
           {/* Marca */}
-          <Grid size={{ xs: 12, md: 3 }}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Stack
               spacing={1.2}
               alignItems="center" // siempre centrado (nombre + girasol)
@@ -36,7 +37,7 @@ export default function Footer() {
                   textAlign: 'center',
                 }}
               >
-                Alejandrina Gonzalez
+                Alejandrina González
               </Typography>
 
               <Box
@@ -52,9 +53,8 @@ export default function Footer() {
               />
             </Stack>
           </Grid>
-
           {/* Contactame */}
-          <Grid size={{ xs: 12, md: 3 }}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Stack spacing={1.2}>
               <Typography variant="h6" fontWeight={500}>
                 Contactame
@@ -69,7 +69,6 @@ export default function Footer() {
               </Link>
             </Stack>
           </Grid>
-
           {/* Ubicación */}
           {/* <Grid size={{ xs: 12, md: 3 }}>
             <Stack spacing={1.2} alignItems={{ xs: 'center', md: 'flex-start' }}>
@@ -98,9 +97,8 @@ export default function Footer() {
               </Link>
             </Stack>
           </Grid> */}
-
           {/* Seguime en */}
-          <Grid size={{ xs: 12, md: 3 }}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Stack alignItems={{ xs: 'center', md: 'flex-start' }}>
               <Typography variant="h6" fontWeight={500}>
                 Seguime en
