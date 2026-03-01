@@ -64,8 +64,8 @@ export default function Footer() {
                 +54 1160482048
               </Link>
 
-              <Link href="mailto:aleinty.gonzalez@gmail.com" underline="none" color="text.secondary">
-                aleinty.gonzalez@gmail.com
+              <Link href="mailto:alejandrinagonzalezguia@gmail.com" underline="none" color="text.secondary">
+                alejandrinagonzalezguia@gmail.com
               </Link>
             </Stack>
           </Grid>
