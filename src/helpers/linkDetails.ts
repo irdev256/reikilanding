@@ -29,7 +29,7 @@ export const linkDetails: LinkDetail[] = [
   },
   {
     slug: 'proposito-espiritual',
-    title: 'Buscas tu propósito espiritual',
+    title: 'Registros Akáshicos',
     subtitle: 'Deseas encontrar el sentido profundo de tu existencia.',
     image: '/link1.jpg',
     ariaLabel: 'Espacio de meditación y búsqueda del propósito espiritual y sentido de vida',
@@ -44,7 +44,7 @@ export const linkDetails: LinkDetail[] = [
   },
   {
     slug: 'claves-camino',
-    title: 'Claves para tu Camino',
+    title: 'Orígenes',
     subtitle: 'Herramientas para manifestar la vida que deseas.',
     image: '/link3.jpg',
     ariaLabel: 'Herramientas espirituales para manifestar una vida consciente y alineada con el alma',

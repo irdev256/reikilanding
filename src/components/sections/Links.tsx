@@ -14,12 +14,16 @@ type LinkCardProps = {
 function LinkCard({ title, subtitle, image, detailPath, ariaLabel }: LinkCardProps) {
   return (
     <Box
-      role="img"
+      component={RouterLink}
+      to={detailPath}
       aria-label={ariaLabel}
       sx={{
+        display: 'block',
         position: 'relative',
         height: { xs: 240, md: 480 },
         cursor: 'pointer',
+        textDecoration: 'none',
+        color: 'inherit',
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -92,8 +96,7 @@ function LinkCard({ title, subtitle, image, detailPath, ariaLabel }: LinkCardPro
         )}
 
         <Button
-          component={RouterLink}
-          to={detailPath}
+          component="span"
           variant="outlined"
           sx={{
             mt: 3,
