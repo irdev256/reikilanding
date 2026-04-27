@@ -10,7 +10,7 @@ import { buildWhatsAppLink } from '../helpers/utils';
 
 export default function LinkDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const detail = linkDetails.find((item) => item.slug === slug);
+  const detail = slug ? linkDetails.find((item) => item.slug === slug) : undefined;
 
   if (!detail) {
     return (

@@ -58,4 +58,3 @@ export const linkDetails: LinkDetail[] = [
 ];
 
 export const getLinkDetailPath = (slug: string) => `/links/${slug}`;
-
