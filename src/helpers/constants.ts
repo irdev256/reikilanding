@@ -8,6 +8,7 @@ export const HomeSection = {
 export const PageRoutes = {
   HOME: '/',
   CONTACTO: '/contacto',
+  LINK_DETAIL: '/links/:slug',
 };
 
 export const NavItems = [

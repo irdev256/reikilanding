@@ -12,6 +12,7 @@ import './global.css';
 // --- Pages ----
 import Home from './pages/Home';
 import Contacto from './pages/Contacto';
+import LinkDetail from './pages/LinkDetail';
 import { PageRoutes } from './helpers/constants';
 // import SobreMi from './pages/SobreMi';
 // import Lorem1 from './pages/Lorem1';
@@ -32,6 +33,7 @@ function App() {
           {/* <Route path="/lorem3" element={<Lorem3 />} /> */}
           {/* <Route path="/sobre-mi" element={<SobreMi />} /> */}
           <Route path={PageRoutes.CONTACTO} element={<Contacto />} />
+          <Route path={PageRoutes.LINK_DETAIL} element={<LinkDetail />} />
         </Routes>
         <Footer />
         <MusicButton />
