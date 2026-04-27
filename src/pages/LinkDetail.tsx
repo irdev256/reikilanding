@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Box, Button, Container, List, ListItem, ListItemText, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -10,7 +11,7 @@ import { buildWhatsAppLink } from '../helpers/utils';
 
 export default function LinkDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const detail = slug ? linkDetails.find((item) => item.slug === slug) : undefined;
+  const detail = useMemo(() => (slug ? linkDetails.find((item) => item.slug === slug) : undefined), [slug]);
 
   if (!detail) {
     return (

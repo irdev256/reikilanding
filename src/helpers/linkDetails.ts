@@ -1,3 +1,5 @@
+import { PageRoutes } from './constants';
+
 export type LinkDetail = {
   slug: string;
   title: string;
@@ -57,4 +59,4 @@ export const linkDetails: LinkDetail[] = [
   },
 ];
 
-export const getLinkDetailPath = (slug: string) => `/links/${slug}`;
+export const getLinkDetailPath = (slug: string) => PageRoutes.LINK_DETAIL.replace(':slug', slug);
