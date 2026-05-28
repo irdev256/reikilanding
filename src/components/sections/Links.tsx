@@ -4,6 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { getLinkDetailPath, linkDetails } from '../../helpers/linkDetails';
 
 type LinkCardProps = {
+  formatLabel?: string;
   title: string;
   subtitle?: string;
   image: string;
@@ -11,7 +12,7 @@ type LinkCardProps = {
   ariaLabel: string;
 };
 
-function LinkCard({ title, subtitle, image, detailPath, ariaLabel }: LinkCardProps) {
+function LinkCard({ formatLabel, title, subtitle, image, detailPath, ariaLabel }: LinkCardProps) {
   return (
     <Box
       component={RouterLink}
@@ -63,6 +64,21 @@ function LinkCard({ title, subtitle, image, detailPath, ariaLabel }: LinkCardPro
           py: 3,
         }}
       >
+        {formatLabel && (
+          <Typography
+            variant="overline"
+            component="p"
+            sx={{
+              letterSpacing: '0.16em',
+              fontSize: '0.72rem',
+              color: 'rgba(255,255,255,0.9)',
+              mb: 0.5,
+            }}
+          >
+            {formatLabel}
+          </Typography>
+        )}
+
         <Typography variant="h4" component="p" fontWeight={600} sx={{ mb: 1 }}>
           {title}
         </Typography>
@@ -145,6 +161,7 @@ export default function Links() {
         {linkDetails.map((link) => (
           <Grid key={link.slug} size={{ xs: 12, sm: 6, md: 4 }}>
             <LinkCard
+              formatLabel={link.formatLabel}
               title={link.title}
               subtitle={link.subtitle}
               image={link.image}

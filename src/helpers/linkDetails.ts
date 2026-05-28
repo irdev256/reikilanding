@@ -2,6 +2,7 @@ import { PageRoutes } from './constants';
 
 export type LinkDetail = {
   slug: string;
+  formatLabel: string;
   title: string;
   subtitle: string;
   image: string;
@@ -14,7 +15,8 @@ export type LinkDetail = {
 export const linkDetails: LinkDetail[] = [
   {
     slug: 'sanacion-liberacion',
-    title: 'Limpiezas Energéticas – Curso',
+    formatLabel: 'Curso',
+    title: 'Limpiezas Energéticas',
     subtitle: 'Aprendé a limpiar, sostener y expandir tu energía desde la luz.',
     image: '/person-conducting-reiki-therapy.jpg',
     ariaLabel: 'Curso de limpiezas energéticas guiado desde la conciencia, la mediumnidad y la luz espiritual',
@@ -29,7 +31,8 @@ export const linkDetails: LinkDetail[] = [
   },
   {
     slug: 'proposito-espiritual',
-    title: 'Registros Akáshicos – Encuentro',
+    formatLabel: 'Encuentro',
+    title: 'Registros Akáshicos',
     subtitle: 'Una puerta de acceso consciente a la memoria y verdad del alma.',
     image: '/link1.jpg',
     ariaLabel: 'Encuentro de Registros Akáshicos guiado desde la luz, la conexión divina y la limpieza del canal',
@@ -44,7 +47,8 @@ export const linkDetails: LinkDetail[] = [
   },
   {
     slug: 'claves-camino',
-    title: 'Orígenes – Mentoría (3 meses)',
+    formatLabel: 'Mentoría (3 meses)',
+    title: 'Orígenes',
     subtitle: 'Un regreso profundo a lo que sos, más allá de todo lo que te enseñaron a ser.',
     image: '/link3.jpg',
     ariaLabel: 'Mentoría Orígenes de tres meses para recordar la esencia, integrar lo espiritual y lo terrenal',
@@ -59,4 +63,4 @@ export const linkDetails: LinkDetail[] = [
   },
 ];
 
-export const getLinkDetailPath = (slug: string) => PageRoutes.LINK_DETAIL.replace(':slug', slug);
+export const getLinkDetailPath = (slug: string) => `${PageRoutes.LINK_DETAIL}?curso=${encodeURIComponent(slug)}`;
