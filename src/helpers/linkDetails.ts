@@ -14,7 +14,7 @@ export type LinkDetail = {
 
 export const linkDetails: LinkDetail[] = [
   {
-    slug: 'sanacion-liberacion',
+    slug: 'limpiezas-energeticas',
     formatLabel: 'Curso',
     title: 'Limpiezas Energéticas',
     subtitle: 'Aprendé a limpiar, sostener y expandir tu energía desde la luz.',
@@ -30,7 +30,7 @@ export const linkDetails: LinkDetail[] = [
     whatsappMessage: 'Hola Alejandrina, quiero más información sobre Limpiezas Energéticas – Curso.',
   },
   {
-    slug: 'proposito-espiritual',
+    slug: 'registros-akashicos',
     formatLabel: 'Encuentro',
     title: 'Registros Akáshicos',
     subtitle: 'Una puerta de acceso consciente a la memoria y verdad del alma.',
@@ -46,7 +46,7 @@ export const linkDetails: LinkDetail[] = [
     whatsappMessage: 'Hola Alejandrina, quiero más información sobre Registros Akáshicos – Encuentro.',
   },
   {
-    slug: 'claves-camino',
+    slug: 'origenes',
     formatLabel: 'Mentoría (3 meses)',
     title: 'Orígenes',
     subtitle: 'Un regreso profundo a lo que sos, más allá de todo lo que te enseñaron a ser.',
