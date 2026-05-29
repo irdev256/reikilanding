@@ -1,9 +1,9 @@
 import { Box, Container, Grid, Link, Stack, Typography, IconButton } from '@mui/material';
 
 import InstagramIcon from '@mui/icons-material/Instagram';
-// import FacebookIcon from '@mui/icons-material/Facebook';
+import FacebookIcon from '@mui/icons-material/Facebook';
 
-import { CLIENT_INSTAGRAM_LINK, CLIENT_TIKTOK_LINK, OUR_WHATSAPP_LINK } from '../../helpers/constants';
+import { CLIENT_FACEBOOK_LINK, CLIENT_INSTAGRAM_LINK, CLIENT_TIKTOK_LINK, OUR_WHATSAPP_LINK } from '../../helpers/constants';
 import TikTokIcon from '../icons/TikTokIcon';
 
 export default function Footer() {
@@ -104,12 +104,25 @@ export default function Footer() {
                 Seguime en
               </Typography>
 
-              <Stack direction="row">
+              <Stack
+                direction="row"
+                spacing={0.5}
+                alignItems="center"
+                sx={{
+                  '& svg': {
+                    width: 22,
+                    height: 22,
+                    display: 'block',
+                  },
+                }}
+              >
                 <IconButton
                   component="a"
                   href={CLIENT_INSTAGRAM_LINK}
                   target="_blank"
+                  rel="noopener noreferrer"
                   sx={{
+                    p: 0.85,
                     color: 'text.secondary',
                     '&:hover': { color: '#9A6B1F' },
                   }}
@@ -122,27 +135,31 @@ export default function Footer() {
                   component="a"
                   href={CLIENT_TIKTOK_LINK}
                   target="_blank"
+                  rel="noopener noreferrer"
                   sx={{
+                    p: 0.85,
                     color: 'text.secondary',
                     '&:hover': { color: '#9A6B1F' },
                   }}
                   aria-label="TikTok de Alejandrina González"
                 >
-                  <TikTokIcon />
+                  <TikTokIcon sx={{ transform: 'scale(0.92)' }} />
                 </IconButton>
 
-                {/* <IconButton
+                <IconButton
                   component="a"
-                  href="#"
+                  href={CLIENT_FACEBOOK_LINK}
                   target="_blank"
+                  rel="noopener noreferrer"
                   sx={{
+                    p: 0.85,
                     color: 'text.secondary',
                     '&:hover': { color: '#9A6B1F' },
                   }}
                   aria-label="Facebook de Alejandrina González"
                 >
                   <FacebookIcon />
-                </IconButton> */}
+                </IconButton>
               </Stack>
             </Stack>
           </Grid>
