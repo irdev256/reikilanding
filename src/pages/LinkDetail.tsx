@@ -1,52 +1,31 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Box, Button, Container, IconButton, List, ListItem, ListItemText, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import useEmblaCarousel from 'embla-carousel-react';
+import type { EmblaCarouselType, EmblaEventType } from 'embla-carousel';
 import Navbar from '../components/layout/Navbar';
 import { OUR_WHATSAPP_LINK, PageRoutes } from '../helpers/constants';
 import { linkDetails, type LinkDetail } from '../helpers/linkDetails';
 import { buildWhatsAppLink } from '../helpers/utils';
 
-const ANIMATION_MS = 420;
-const TRANSITION_EASING = 'cubic-bezier(0.22, 0.7, 0.2, 1)';
+const BG_FADE_MS = 380;
+const TWEEN_FACTOR_BASE = 0.42;
+const CARD_HEIGHT = { xs: 560, md: 700 };
 
-type Direction = -1 | 0 | 1;
-type CardSlot = 'left' | 'center' | 'right';
-
-function getCardMotion(slot: CardSlot, direction: Direction, isAnimating: boolean) {
-  if (!isAnimating || direction === 0) {
-    if (slot === 'center') return { transform: 'translateX(0%)', opacity: 1, filter: 'blur(0px)', zIndex: 4 };
-    if (slot === 'left') return { transform: 'translateX(-22%)', opacity: 0.5, filter: 'blur(3px)', zIndex: 2 };
-
-    return { transform: 'translateX(22%)', opacity: 0.5, filter: 'blur(3px)', zIndex: 2 };
-  }
-
-  if (direction === 1) {
-    if (slot === 'left') return { transform: 'translateX(-44%)', opacity: 0, filter: 'blur(4px)', zIndex: 1 };
-    if (slot === 'center') return { transform: 'translateX(-22%)', opacity: 0.5, filter: 'blur(3px)', zIndex: 2 };
-    if (slot === 'right') return { transform: 'translateX(0%)', opacity: 1, filter: 'blur(0px)', zIndex: 4 };
-
-    return { transform: 'translateX(22%)', opacity: 0.5, filter: 'blur(3px)', zIndex: 2 };
-  }
-
-  if (slot === 'right') return { transform: 'translateX(44%)', opacity: 0, filter: 'blur(4px)', zIndex: 1 };
-  if (slot === 'center') return { transform: 'translateX(22%)', opacity: 0.5, filter: 'blur(3px)', zIndex: 2 };
-  if (slot === 'left') return { transform: 'translateX(0%)', opacity: 1, filter: 'blur(0px)', zIndex: 4 };
-
-  return { transform: 'translateX(-22%)', opacity: 0.5, filter: 'blur(3px)', zIndex: 2 };
-}
+const numberWithinRange = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
 type CourseCardProps = {
   detail: LinkDetail;
-  isExpanded: boolean;
+  isFeatured: boolean;
   isInteractiveForeground: boolean;
 };
 
-function CourseCard({ detail, isExpanded, isInteractiveForeground }: CourseCardProps) {
+function CourseCard({ detail, isFeatured, isInteractiveForeground }: CourseCardProps) {
   const whatsappUrl = buildWhatsAppLink({
     baseUrl: OUR_WHATSAPP_LINK,
     message: detail.whatsappMessage,
@@ -56,13 +35,15 @@ function CourseCard({ detail, isExpanded, isInteractiveForeground }: CourseCardP
     <Box
       sx={{
         p: { xs: 3, md: 5 },
-        height: isExpanded ? 'auto' : { xs: 460, md: 620 },
+        height: CARD_HEIGHT,
+        display: 'flex',
+        flexDirection: 'column',
         borderRadius: 3,
-        backgroundColor: isExpanded ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.7)',
-        border: '1px solid rgba(200,164,93,0.28)',
+        backgroundColor: 'rgba(255,255,255,0.96)',
+        border: isFeatured ? '1px solid rgba(200,164,93,0.34)' : '1px solid rgba(200,164,93,0.24)',
         backdropFilter: 'blur(3px)',
-        boxShadow: isExpanded ? '0 20px 40px rgba(54,35,17,0.2)' : '0 16px 30px rgba(54,35,17,0.12)',
-        overflow: isExpanded ? 'visible' : 'hidden',
+        boxShadow: isFeatured ? '0 10px 22px rgba(54,35,17,0.14)' : '0 6px 14px rgba(54,35,17,0.08)',
+        overflow: 'hidden',
         pointerEvents: isInteractiveForeground ? 'auto' : 'none',
         userSelect: isInteractiveForeground ? 'text' : 'none',
         WebkitUserSelect: isInteractiveForeground ? 'text' : 'none',
@@ -88,17 +69,27 @@ function CourseCard({ detail, isExpanded, isInteractiveForeground }: CourseCardP
         {detail.subtitle}
       </Typography>
 
-      <Typography variant="body1" sx={{ mb: 2, whiteSpace: 'pre-line' }}>
-        {detail.description}
-      </Typography>
+      <Box
+        sx={{
+          flex: 1,
+          minHeight: 0,
+          overflowY: isInteractiveForeground ? 'auto' : 'hidden',
+          pr: isInteractiveForeground ? 1 : 0,
+          scrollbarGutter: 'stable',
+        }}
+      >
+        <Typography variant="body1" sx={{ mb: 2, whiteSpace: 'pre-line' }}>
+          {detail.description}
+        </Typography>
 
-      <List sx={{ mb: 4 }}>
-        {detail.highlights.map((item) => (
-          <ListItem key={item} disablePadding sx={{ mb: 1 }}>
-            <ListItemText primary={`• ${item}`} primaryTypographyProps={{ color: '#6B6460' }} />
-          </ListItem>
-        ))}
-      </List>
+        <List sx={{ mb: 0 }}>
+          {detail.highlights.map((item) => (
+            <ListItem key={item} disablePadding sx={{ mb: 1 }}>
+              <ListItemText primary={`• ${item}`} primaryTypographyProps={{ color: '#6B6460' }} />
+            </ListItem>
+          ))}
+        </List>
+      </Box>
 
       <Button
         component="a"
@@ -109,6 +100,9 @@ function CourseCard({ detail, isExpanded, isInteractiveForeground }: CourseCardP
         startIcon={<WhatsAppIcon />}
         disabled={!isInteractiveForeground}
         sx={{
+          mt: 3,
+          alignSelf: 'flex-start',
+          flexShrink: 0,
           textTransform: 'none',
           px: 4,
           py: 1.4,
@@ -125,61 +119,103 @@ function CourseCard({ detail, isExpanded, isInteractiveForeground }: CourseCardP
 }
 
 export default function LinkDetail() {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const selectedSlug = searchParams.get('curso');
-  const [activeIndex, setActiveIndex] = useState(() => {
+  const initialIndex = useMemo(() => {
+    const selectedSlug = new URLSearchParams(window.location.search).get('curso');
     if (!selectedSlug) return 0;
 
     const detailIndex = linkDetails.findIndex((item) => item.slug === selectedSlug);
     return detailIndex >= 0 ? detailIndex : 0;
-  });
-  const [direction, setDirection] = useState<Direction>(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [nextIndex, setNextIndex] = useState<number | null>(null);
-  const animationTimerRef = useRef<number | undefined>(undefined);
-
-  useEffect(() => {
-    return () => {
-      if (animationTimerRef.current) {
-        window.clearTimeout(animationTimerRef.current);
-      }
-    };
   }, []);
 
-  const getWrappedIndex = (index: number) => {
-    const total = linkDetails.length;
-    return ((index % total) + total) % total;
-  };
+  const [activeIndex, setActiveIndex] = useState(initialIndex);
+  const tweenFactor = useRef(0);
+  const tweenNodes = useRef<HTMLElement[]>([]);
 
-  const slideTo = (nextDirection: Direction) => {
-    if (isAnimating || nextDirection === 0) return;
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: 'center',
+    loop: true,
+    startIndex: initialIndex,
+  });
 
-    const normalizedIndex = getWrappedIndex(activeIndex + nextDirection);
-    const nextDetail = linkDetails[normalizedIndex];
+  const setTweenNodes = useCallback((api: EmblaCarouselType) => {
+    tweenNodes.current = api.slideNodes().map((slideNode) => {
+      return slideNode.querySelector('.embla__slide__inner') as HTMLElement;
+    });
+  }, []);
 
-    setNextIndex(normalizedIndex);
-    setDirection(nextDirection);
-    setIsAnimating(true);
+  const setTweenFactor = useCallback((api: EmblaCarouselType) => {
+    tweenFactor.current = TWEEN_FACTOR_BASE * api.scrollSnapList().length;
+  }, []);
 
-    if (animationTimerRef.current) {
-      window.clearTimeout(animationTimerRef.current);
-    }
+  const tweenScale = useCallback((api: EmblaCarouselType, eventName?: EmblaEventType) => {
+    const engine = api.internalEngine();
+    const scrollProgress = api.scrollProgress();
+    const slidesInView = api.slidesInView();
+    const isScrollEvent = eventName === 'scroll';
 
-    animationTimerRef.current = window.setTimeout(() => {
-      setActiveIndex(normalizedIndex);
-      setIsAnimating(false);
-      setDirection(0);
-      setNextIndex(null);
-      setSearchParams({ curso: nextDetail.slug }, { replace: true });
-      animationTimerRef.current = undefined;
-    }, ANIMATION_MS);
-  };
+    api.scrollSnapList().forEach((scrollSnap, snapIndex) => {
+      let diffToTarget = scrollSnap - scrollProgress;
+      const slidesInSnap = engine.slideRegistry[snapIndex];
+
+      slidesInSnap.forEach((slideIndex) => {
+        if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
+
+        if (engine.options.loop) {
+          engine.slideLooper.loopPoints.forEach((loopPoint) => {
+            const target = loopPoint.target();
+
+            if (slideIndex === loopPoint.index && target !== 0) {
+              const sign = Math.sign(target);
+
+              if (sign === -1) diffToTarget = scrollSnap - (1 + scrollProgress);
+              if (sign === 1) diffToTarget = scrollSnap + (1 - scrollProgress);
+            }
+          });
+        }
+
+        const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current);
+        const progress = numberWithinRange(tweenValue, 0, 1);
+        const scale = numberWithinRange(0.82 + progress * 0.18, 0.82, 1);
+        const tweenNode = tweenNodes.current[slideIndex];
+        if (!tweenNode) return;
+
+        tweenNode.style.transform = `scale(${scale})`;
+      });
+    });
+  }, []);
+
+  const syncSelection = useCallback((api: EmblaCarouselType) => {
+    const index = api.selectedScrollSnap();
+    setActiveIndex(index);
+
+    const nextDetail = linkDetails[index];
+    if (!nextDetail) return;
+
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set('curso', nextDetail.slug);
+    const nextUrl = `${window.location.pathname}?${searchParams.toString()}${window.location.hash}`;
+    window.history.replaceState(window.history.state, '', nextUrl);
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    setTweenNodes(emblaApi);
+    setTweenFactor(emblaApi);
+    tweenScale(emblaApi);
+    syncSelection(emblaApi);
+
+    emblaApi
+      .on('reInit', setTweenNodes)
+      .on('reInit', setTweenFactor)
+      .on('reInit', tweenScale)
+      .on('reInit', syncSelection)
+      .on('scroll', tweenScale)
+      .on('slideFocus', tweenScale)
+      .on('select', syncSelection);
+  }, [emblaApi, setTweenFactor, setTweenNodes, syncSelection, tweenScale]);
 
   const detail = linkDetails[activeIndex];
-  const prevDetail = linkDetails[getWrappedIndex(activeIndex - 1)];
-  const nextDetail = linkDetails[getWrappedIndex(activeIndex + 1)];
-  const nextBackgroundDetail = nextIndex !== null ? linkDetails[nextIndex] : null;
 
   if (!detail) {
     return (
@@ -210,33 +246,22 @@ export default function LinkDetail() {
           backgroundColor: '#f3ece1',
         }}
       >
-        <Box
-          sx={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: `url(${detail.image})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            zIndex: 0,
-            transition: `opacity ${ANIMATION_MS}ms ${TRANSITION_EASING}`,
-            opacity: 1,
-          }}
-        />
-
-        {nextBackgroundDetail && (
+        {linkDetails.map((item, index) => (
           <Box
+            key={item.slug}
             sx={{
               position: 'absolute',
               inset: 0,
-              backgroundImage: `url(${nextBackgroundDetail.image})`,
+              backgroundImage: `url(${item.image})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               zIndex: 0,
-              transition: `opacity ${ANIMATION_MS}ms ${TRANSITION_EASING}`,
-              opacity: isAnimating ? 1 : 0,
+              opacity: activeIndex === index ? 1 : 0,
+              transition: `opacity ${BG_FADE_MS}ms ease`,
+              willChange: 'opacity',
             }}
           />
-        )}
+        ))}
 
         <Navbar />
 
@@ -267,21 +292,18 @@ export default function LinkDetail() {
           <Box
             sx={{
               position: 'relative',
-              display: 'grid',
-              minHeight: { xs: 560, md: 740 },
-              alignItems: 'start',
-              isolation: 'isolate',
+              minHeight: { xs: 620, md: 820 },
             }}
           >
             <IconButton
               aria-label="Curso anterior"
-              onClick={() => slideTo(-1)}
+              onClick={() => emblaApi?.scrollPrev()}
               sx={{
                 position: 'absolute',
                 top: '50%',
                 left: { xs: -4, sm: -10, md: -26 },
                 transform: 'translateY(-50%)',
-                zIndex: 6,
+                zIndex: 60,
                 border: '1px solid rgba(140,106,61,0.28)',
                 backgroundColor: 'rgba(255,255,255,0.85)',
                 '&:hover': { backgroundColor: '#fff' },
@@ -292,13 +314,13 @@ export default function LinkDetail() {
 
             <IconButton
               aria-label="Curso siguiente"
-              onClick={() => slideTo(1)}
+              onClick={() => emblaApi?.scrollNext()}
               sx={{
                 position: 'absolute',
                 top: '50%',
                 right: { xs: -4, sm: -10, md: -26 },
                 transform: 'translateY(-50%)',
-                zIndex: 6,
+                zIndex: 60,
                 border: '1px solid rgba(140,106,61,0.28)',
                 backgroundColor: 'rgba(255,255,255,0.85)',
                 '&:hover': { backgroundColor: '#fff' },
@@ -308,39 +330,63 @@ export default function LinkDetail() {
             </IconButton>
 
             <Box
+              className="embla"
               sx={{
-                gridArea: '1 / 1',
+                width: { xs: '100%', md: 1080 },
                 mx: 'auto',
-                width: { xs: '100%', md: 760 },
-                ...getCardMotion('left', direction, isAnimating),
-                transition: `transform ${ANIMATION_MS}ms ${TRANSITION_EASING}, opacity ${ANIMATION_MS}ms ${TRANSITION_EASING}, filter ${ANIMATION_MS}ms ${TRANSITION_EASING}`,
+                '--slide-size': { xs: '92%', md: '72%' },
+                '--slide-spacing': { xs: '0.9rem', md: '1.25rem' },
               }}
             >
-              <CourseCard detail={prevDetail} isExpanded={direction === -1} isInteractiveForeground={false} />
-            </Box>
+              <Box
+                ref={emblaRef}
+                className="embla__viewport"
+                sx={{
+                  overflowX: 'hidden',
+                  overflowY: 'visible',
+                }}
+              >
+                <Box
+                  className="embla__container"
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    touchAction: 'pan-y pinch-zoom',
+                    ml: 'calc(var(--slide-spacing) * -1)',
+                    pb: { xs: 1.5, md: 2.5 },
+                  }}
+                >
+                  {linkDetails.map((item, index) => {
+                    const isActive = index === activeIndex;
 
-            <Box
-              sx={{
-                gridArea: '1 / 1',
-                mx: 'auto',
-                width: { xs: '100%', md: 760 },
-                ...getCardMotion('center', direction, isAnimating),
-                transition: `transform ${ANIMATION_MS}ms ${TRANSITION_EASING}, opacity ${ANIMATION_MS}ms ${TRANSITION_EASING}, filter ${ANIMATION_MS}ms ${TRANSITION_EASING}`,
-              }}
-            >
-              <CourseCard detail={detail} isExpanded isInteractiveForeground />
-            </Box>
-
-            <Box
-              sx={{
-                gridArea: '1 / 1',
-                mx: 'auto',
-                width: { xs: '100%', md: 760 },
-                ...getCardMotion('right', direction, isAnimating),
-                transition: `transform ${ANIMATION_MS}ms ${TRANSITION_EASING}, opacity ${ANIMATION_MS}ms ${TRANSITION_EASING}, filter ${ANIMATION_MS}ms ${TRANSITION_EASING}`,
-              }}
-            >
-              <CourseCard detail={nextDetail} isExpanded={direction === 1} isInteractiveForeground={false} />
+                    return (
+                      <Box
+                        key={item.slug}
+                        className="embla__slide"
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          transform: 'translate3d(0, 0, 0)',
+                          flex: '0 0 var(--slide-size)',
+                          minWidth: 0,
+                          pl: 'var(--slide-spacing)',
+                        }}
+                      >
+                        <Box
+                          className="embla__slide__inner"
+                          sx={{
+                            transformOrigin: 'center center',
+                            transition: 'transform 140ms linear',
+                            willChange: 'transform',
+                          }}
+                        >
+                          <CourseCard detail={item} isFeatured={isActive} isInteractiveForeground={isActive} />
+                        </Box>
+                      </Box>
+                    );
+                  })}
+                </Box>
+              </Box>
             </Box>
           </Box>
         </Container>
