@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Box, Button, Container, IconButton, List, ListItem, ListItemText, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -88,7 +88,7 @@ function CourseCard({ detail, isExpanded, isInteractiveForeground }: CourseCardP
         {detail.subtitle}
       </Typography>
 
-      <Typography variant="body1" sx={{ mb: 2 }}>
+      <Typography variant="body1" sx={{ mb: 2, whiteSpace: 'pre-line' }}>
         {detail.description}
       </Typography>
 
@@ -128,24 +128,16 @@ export default function LinkDetail() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const selectedSlug = searchParams.get('curso');
-  const initialIndex = useMemo(() => {
+  const [activeIndex, setActiveIndex] = useState(() => {
     if (!selectedSlug) return 0;
 
     const detailIndex = linkDetails.findIndex((item) => item.slug === selectedSlug);
     return detailIndex >= 0 ? detailIndex : 0;
-  }, [selectedSlug]);
-
-  const [activeIndex, setActiveIndex] = useState(initialIndex);
+  });
   const [direction, setDirection] = useState<Direction>(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [nextIndex, setNextIndex] = useState<number | null>(null);
   const animationTimerRef = useRef<number | undefined>(undefined);
-
-  useEffect(() => {
-    if (!isAnimating) {
-      setActiveIndex(initialIndex);
-    }
-  }, [initialIndex, isAnimating]);
 
   useEffect(() => {
     return () => {
@@ -324,11 +316,7 @@ export default function LinkDetail() {
                 transition: `transform ${ANIMATION_MS}ms ${TRANSITION_EASING}, opacity ${ANIMATION_MS}ms ${TRANSITION_EASING}, filter ${ANIMATION_MS}ms ${TRANSITION_EASING}`,
               }}
             >
-              <CourseCard
-                detail={prevDetail}
-                isExpanded={direction === -1}
-                isInteractiveForeground={false}
-              />
+              <CourseCard detail={prevDetail} isExpanded={direction === -1} isInteractiveForeground={false} />
             </Box>
 
             <Box
@@ -352,11 +340,7 @@ export default function LinkDetail() {
                 transition: `transform ${ANIMATION_MS}ms ${TRANSITION_EASING}, opacity ${ANIMATION_MS}ms ${TRANSITION_EASING}, filter ${ANIMATION_MS}ms ${TRANSITION_EASING}`,
               }}
             >
-              <CourseCard
-                detail={nextDetail}
-                isExpanded={direction === 1}
-                isInteractiveForeground={false}
-              />
+              <CourseCard detail={nextDetail} isExpanded={direction === 1} isInteractiveForeground={false} />
             </Box>
           </Box>
         </Container>
