@@ -21,7 +21,8 @@ function LinkCard({ formatLabel, title, subtitle, image, detailPath, ariaLabel }
       sx={{
         display: 'block',
         position: 'relative',
-        height: { xs: 240, md: 480 },
+        height: { xs: 'auto', md: 480 },
+        minHeight: { xs: 240, md: 'unset' },
         cursor: 'pointer',
         textDecoration: 'none',
         color: 'inherit',

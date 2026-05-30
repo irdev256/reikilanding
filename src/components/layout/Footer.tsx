@@ -1,10 +1,6 @@
-import { Box, Container, Grid, Link, Stack, Typography, IconButton } from '@mui/material';
-
-import InstagramIcon from '@mui/icons-material/Instagram';
-import FacebookIcon from '@mui/icons-material/Facebook';
+import { Box, Container, Grid, Link, Stack, Typography } from '@mui/material';
 
 import { CLIENT_FACEBOOK_LINK, CLIENT_INSTAGRAM_LINK, CLIENT_TIKTOK_LINK, OUR_WHATSAPP_LINK } from '../../helpers/constants';
-import TikTokIcon from '../icons/TikTokIcon';
 
 export default function Footer() {
   return (
@@ -104,63 +100,89 @@ export default function Footer() {
                 Seguime en
               </Typography>
 
-              <Stack
-                direction="row"
-                spacing={0.5}
-                alignItems="center"
+              <Box
                 sx={{
-                  '& svg': {
-                    width: 22,
-                    height: 22,
-                    display: 'block',
-                  },
+                  display: 'flex',
+                  flexDirection: 'row',
+                  gap: 0.5,
+                  alignItems: 'center',
+                  mt: 0.5,
                 }}
               >
-                <IconButton
-                  component="a"
-                  href={CLIENT_INSTAGRAM_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={{
-                    p: 0.85,
-                    color: 'text.secondary',
-                    '&:hover': { color: '#9A6B1F' },
-                  }}
+                {/* Instagram */}
+                <Box
+                  component="button"
+                  onClick={() => window.open(CLIENT_INSTAGRAM_LINK, '_blank', 'noopener,noreferrer')}
                   aria-label="Instagram de Alejandrina González"
-                >
-                  <InstagramIcon />
-                </IconButton>
-
-                <IconButton
-                  component="a"
-                  href={CLIENT_TIKTOK_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   sx={{
-                    p: 0.85,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    p: '7px',
+                    borderRadius: '50%',
                     color: 'text.secondary',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'color 0.2s',
                     '&:hover': { color: '#9A6B1F' },
                   }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <circle cx="12" cy="12" r="4.2" />
+                    <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
+                  </svg>
+                </Box>
+
+                {/* TikTok */}
+                <Box
+                  component="button"
+                  onClick={() => window.open(CLIENT_TIKTOK_LINK, '_blank', 'noopener,noreferrer')}
                   aria-label="TikTok de Alejandrina González"
-                >
-                  <TikTokIcon sx={{ transform: 'scale(0.92)' }} />
-                </IconButton>
-
-                <IconButton
-                  component="a"
-                  href={CLIENT_FACEBOOK_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   sx={{
-                    p: 0.85,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    p: '7px',
+                    borderRadius: '50%',
                     color: 'text.secondary',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'color 0.2s',
                     '&:hover': { color: '#9A6B1F' },
                   }}
-                  aria-label="Facebook de Alejandrina González"
                 >
-                  <FacebookIcon />
-                </IconButton>
-              </Stack>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 448 512" fill="currentColor">
+                    <path d="M448,209.9a210.1,210.1,0,0,1-122.8-39.2V349.4A162.6,162.6,0,1,1,185.7,188.9V278.2a74.6,74.6,0,1,0,52.2,71.2V0h87.3a121.2,121.2,0,0,0,1.9,22.2h0A122.2,122.2,0,0,0,381.8,95a121.4,121.4,0,0,0,66.2,19.5Z" />
+                  </svg>
+                </Box>
+
+                {/* Facebook */}
+                <Box
+                  component="button"
+                  onClick={() => window.open(CLIENT_FACEBOOK_LINK, '_blank', 'noopener,noreferrer')}
+                  aria-label="Facebook de Alejandrina González"
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    p: '7px',
+                    borderRadius: '50%',
+                    color: 'text.secondary',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'color 0.2s',
+                    '&:hover': { color: '#9A6B1F' },
+                  }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.791-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
+                  </svg>
+                </Box>
+              </Box>
             </Stack>
           </Grid>
         </Grid>
