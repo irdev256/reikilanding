@@ -28,4 +28,4 @@ export const CLIENT_FACEBOOK_LINK = 'https://www.facebook.com/profile.php?id=615
 export const WHATSAPP_DEFAULT_MESSAGE = 'Hola! Me gustaría recibir más información sobre la mentoría.';
 
 // OUR
-export const OUR_WHATSAPP_LINK = 'https://wa.me/5491160482048';
+export const OUR_WHATSAPP_LINK = 'https://wa.me/5491173624522';

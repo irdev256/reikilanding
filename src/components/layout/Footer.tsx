@@ -185,7 +185,7 @@ export default function Footer() {
               '&:hover': { color: 'text.primary' },
             }}
           >
-            © {new Date().getFullYear()} IR-DEV
+            © {new Date().getFullYear()} DOSDOS
           </Link>
         </Box>
       </Container>
