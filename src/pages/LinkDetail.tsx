@@ -15,7 +15,7 @@ import { buildWhatsAppLink } from '../helpers/utils';
 
 const BG_FADE_MS = 380;
 const TWEEN_FACTOR_BASE = 0.42;
-const CARD_HEIGHT = { xs: 560, md: 700 };
+const CARD_HEIGHT = { xs: 'calc(100dvh - 96px)', md: 'calc(100dvh - 120px)' };
 
 const numberWithinRange = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
@@ -242,7 +242,8 @@ export default function LinkDetail() {
       <Box
         sx={{
           position: 'relative',
-          minHeight: '100vh',
+          height: '100dvh',
+          overflow: 'hidden',
           backgroundColor: '#f3ece1',
         }}
       >
@@ -273,123 +274,115 @@ export default function LinkDetail() {
           }}
         />
 
-        <Container
-          maxWidth="lg"
+        <Box
           sx={{
-            position: 'relative',
-            py: { xs: 1.5, md: 2 },
+            position: 'absolute',
+            top: { xs: '56px', md: '64px' },
+            left: 0,
+            right: 0,
+            bottom: 0,
+            display: 'flex',
+            alignItems: 'center',
+            zIndex: 2,
           }}
         >
-          <Button
-            component={Link}
-            to={PageRoutes.HOME}
-            startIcon={<ArrowBackIcon />}
-            sx={{ mb: { xs: 1.5, md: 2 }, textTransform: 'none', color: '#6E5B3E' }}
-          >
-            Volver al inicio
-          </Button>
-
-          <Box
+          <IconButton
+            aria-label="Curso anterior"
+            onClick={() => emblaApi?.scrollPrev()}
             sx={{
-              position: 'relative',
-              minHeight: { xs: 620, md: 820 },
+              position: 'absolute',
+              top: '50%',
+              left: { xs: 8, sm: 16, md: 32 },
+              transform: 'translateY(-50%)',
+              zIndex: 60,
+              width: { xs: 40, md: 48 },
+              height: { xs: 40, md: 48 },
+              border: '1px solid rgba(140,106,61,0.28)',
+              backgroundColor: 'rgba(255,255,255,0.9)',
+              boxShadow: '0 4px 16px rgba(54,35,17,0.18)',
+              '&:hover': { backgroundColor: '#fff', boxShadow: '0 6px 20px rgba(54,35,17,0.28)' },
             }}
           >
-            <IconButton
-              aria-label="Curso anterior"
-              onClick={() => emblaApi?.scrollPrev()}
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                left: { xs: -4, sm: -10, md: -26 },
-                transform: 'translateY(-50%)',
-                zIndex: 60,
-                border: '1px solid rgba(140,106,61,0.28)',
-                backgroundColor: 'rgba(255,255,255,0.85)',
-                '&:hover': { backgroundColor: '#fff' },
-              }}
-            >
-              <ChevronLeftIcon />
-            </IconButton>
+            <ChevronLeftIcon />
+          </IconButton>
 
-            <IconButton
-              aria-label="Curso siguiente"
-              onClick={() => emblaApi?.scrollNext()}
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                right: { xs: -4, sm: -10, md: -26 },
-                transform: 'translateY(-50%)',
-                zIndex: 60,
-                border: '1px solid rgba(140,106,61,0.28)',
-                backgroundColor: 'rgba(255,255,255,0.85)',
-                '&:hover': { backgroundColor: '#fff' },
-              }}
-            >
-              <ChevronRightIcon />
-            </IconButton>
+          <IconButton
+            aria-label="Curso siguiente"
+            onClick={() => emblaApi?.scrollNext()}
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              right: { xs: 8, sm: 16, md: 32 },
+              transform: 'translateY(-50%)',
+              zIndex: 60,
+              width: { xs: 40, md: 48 },
+              height: { xs: 40, md: 48 },
+              border: '1px solid rgba(140,106,61,0.28)',
+              backgroundColor: 'rgba(255,255,255,0.9)',
+              boxShadow: '0 4px 16px rgba(54,35,17,0.18)',
+              '&:hover': { backgroundColor: '#fff', boxShadow: '0 6px 20px rgba(54,35,17,0.28)' },
+            }}
+          >
+            <ChevronRightIcon />
+          </IconButton>
 
+          <Box
+            className="embla"
+            sx={{
+              width: '100%',
+              '--slide-size': { xs: '82%', md: '58%' },
+              '--slide-spacing': { xs: '0.9rem', md: '1.25rem' },
+            }}
+          >
             <Box
-              className="embla"
-              sx={{
-                width: { xs: '100%', md: 1080 },
-                mx: 'auto',
-                '--slide-size': { xs: '92%', md: '72%' },
-                '--slide-spacing': { xs: '0.9rem', md: '1.25rem' },
-              }}
+              ref={emblaRef}
+              className="embla__viewport"
+              sx={{ overflow: 'visible' }}
             >
               <Box
-                ref={emblaRef}
-                className="embla__viewport"
+                className="embla__container"
                 sx={{
-                  overflowX: 'hidden',
-                  overflowY: 'visible',
+                  display: 'flex',
+                  alignItems: 'center',
+                  touchAction: 'pan-y pinch-zoom',
+                  ml: 'calc(var(--slide-spacing) * -1)',
                 }}
               >
-                <Box
-                  className="embla__container"
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    touchAction: 'pan-y pinch-zoom',
-                    ml: 'calc(var(--slide-spacing) * -1)',
-                    pb: { xs: 1.5, md: 2.5 },
-                  }}
-                >
-                  {linkDetails.map((item, index) => {
-                    const isActive = index === activeIndex;
+                {linkDetails.map((item, index) => {
+                  const isActive = index === activeIndex;
 
-                    return (
+                  return (
+                    <Box
+                      key={item.slug}
+                      className="embla__slide"
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        transform: 'translate3d(0, 0, 0)',
+                        flex: '0 0 var(--slide-size)',
+                        minWidth: 0,
+                        pl: 'var(--slide-spacing)',
+                      }}
+                    >
                       <Box
-                        key={item.slug}
-                        className="embla__slide"
+                        className="embla__slide__inner"
                         sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          transform: 'translate3d(0, 0, 0)',
-                          flex: '0 0 var(--slide-size)',
-                          minWidth: 0,
-                          pl: 'var(--slide-spacing)',
+                          transformOrigin: 'center center',
+                          transition: 'transform 140ms linear, filter 300ms ease, opacity 300ms ease',
+                          willChange: 'transform, filter, opacity',
+                          filter: isActive ? 'none' : 'blur(5px)',
+                          opacity: isActive ? 1 : 0.45,
                         }}
                       >
-                        <Box
-                          className="embla__slide__inner"
-                          sx={{
-                            transformOrigin: 'center center',
-                            transition: 'transform 140ms linear',
-                            willChange: 'transform',
-                          }}
-                        >
-                          <CourseCard detail={item} isFeatured={isActive} isInteractiveForeground={isActive} />
-                        </Box>
+                        <CourseCard detail={item} isFeatured={isActive} isInteractiveForeground={isActive} />
                       </Box>
-                    );
-                  })}
-                </Box>
+                    </Box>
+                  );
+                })}
               </Box>
             </Box>
           </Box>
-        </Container>
+        </Box>
       </Box>
     </>
   );

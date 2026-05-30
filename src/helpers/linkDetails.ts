@@ -29,11 +29,7 @@ export const linkDetails: LinkDetail[] = [
       'Este no es solo un aprendizaje técnico. Es un proceso de apertura, de confianza y de reconexión con tu propia capacidad de canalizar la luz.\n' +
       'Si sentís que es momento de comprender lo que percibís, de dejar de temerle a lo que no ves y empezar a sostener tu energía desde otro lugar… este espacio es para vos.\n' +
       '✨ Tu energía es tu hogar. Aprendé a limpiarla, sostenerla y expandirla desde la luz.',
-    highlights: [
-      'Conexión con tus guías espirituales a través de la mediumnidad',
-      'Comprensión profunda de energías densas, estancadas e interferencias',
-      'Herramientas para limpiar tu campo energético y el de otras personas',
-    ],
+    highlights: [],
     whatsappMessage: 'Hola Alejandrina, quiero más información sobre Limpiezas Energéticas – Curso.',
   },
   {
@@ -61,11 +57,7 @@ export const linkDetails: LinkDetail[] = [
       'Todos los encuentros que comparto —Orígenes, mentoría, registros— tienen una misma base: la conexión divina y la limpieza del canal. Porque desde ahí es donde todo se vuelve claro, verdadero y amoroso.\n' +
       '✨ Cuando el canal se limpia, la información deja de confundirte… y empieza a guiarte.\n' +
       'Si sentís el llamado, este es tu momento de abrir esa puerta.',
-    highlights: [
-      'Acceso consciente a la memoria del alma desde la conexión divina',
-      'Apertura y cierre correcto de Registros Akáshicos con oraciones',
-      'Limpieza del canal para recibir información clara y sin interferencias',
-    ],
+    highlights: [],
     whatsappMessage: 'Hola Alejandrina, quiero más información sobre Registros Akáshicos – Encuentro.',
   },
   {
@@ -88,12 +80,8 @@ export const linkDetails: LinkDetail[] = [
       'Es animarte a dejar de buscar y empezar a recordar.\n' +
       'No es fácil, pero es profundamente transformador.\n' +
       'Porque cuando encontrás tu origen… ya no volvés a perderte.\n' +
-      '✨ Si sentís el llamado, es porque tu alma ya empezó a recordarl',
-    highlights: [
-      'Regreso profundo a tu esencia durante una mentoría de tres meses',
-      'Integración de lo espiritual y lo terrenal para traer claridad y orden',
-      'Conexión con frecuencias de luz, naturaleza y planos de existencia',
-    ],
+      '✨ Si sentís el llamado, es porque tu alma ya empezó a recordar',
+    highlights: [],
     whatsappMessage: 'Hola Alejandrina, quiero más información sobre Orígenes – Mentoría (3 meses).',
   },
 ];

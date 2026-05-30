@@ -24,7 +24,7 @@ export const NavItems = [
 export const CLIENT_WHATSAPP_LINK = 'https://wa.me/message/N4EEXQS2I5C5J1';
 export const CLIENT_INSTAGRAM_LINK = 'https://www.instagram.com/luz_deangel_/';
 export const CLIENT_TIKTOK_LINK = 'https://www.tiktok.com/@luz_deangel_';
-export const CLIENT_FACEBOOK_LINK = 'https://www.facebook.com/alejandrina.gonzalez.1041';
+export const CLIENT_FACEBOOK_LINK = 'https://www.facebook.com/profile.php?id=61588227822977&locale=es_LA';
 export const WHATSAPP_DEFAULT_MESSAGE = 'Hola! Me gustaría recibir más información sobre la mentoría.';
 
 // OUR
