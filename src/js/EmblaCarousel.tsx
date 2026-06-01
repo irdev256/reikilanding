@@ -1,8 +1,6 @@
-import React, { useCallback, useEffect, useRef } from 'react'
-import {
+import { useCallback, useEffect, useRef } from 'react'
+import type {
   EmblaCarouselType,
-  EmblaEventListType,
-  EmblaEventModelType,
   EmblaOptionsType
 } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
@@ -46,25 +44,19 @@ const EmblaCarousel = (props: PropType) => {
   }, [])
 
   const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
-    tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.snapList().length
+    tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length
   }, [])
 
   const tweenScale = useCallback(
-    <EventType extends keyof EmblaEventListType>(
-      emblaApi: EmblaCarouselType,
-      event?: EmblaEventModelType<EventType>
-    ) => {
+    (emblaApi: EmblaCarouselType) => {
       const engine = emblaApi.internalEngine()
       const scrollProgress = emblaApi.scrollProgress()
-      const slidesInView = emblaApi.slidesInView()
-      const isScrollEvent = event?.type === 'scroll'
 
-      emblaApi.snapList().forEach((scrollSnap, snapIndex) => {
+      emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
         let diffToTarget = scrollSnap - scrollProgress
-        const slidesInSnap = engine.scrollSnapList.slidesBySnap[snapIndex]
+        const slidesInSnap = engine.slideRegistry[snapIndex] || []
 
-        slidesInSnap.forEach((slideIndex) => {
-          if (isScrollEvent && !slidesInView.includes(slideIndex)) return
+        slidesInSnap.forEach((slideIndex: number) => {
 
           if (engine.options.loop) {
             engine.slideLooper.loopPoints.forEach((loopItem) => {
@@ -101,11 +93,11 @@ const EmblaCarousel = (props: PropType) => {
     tweenScale(emblaApi)
 
     emblaApi
-      .on('reinit', setTweenNodes)
-      .on('reinit', setTweenFactor)
-      .on('reinit', tweenScale)
+      .on('reInit', setTweenNodes)
+      .on('reInit', setTweenFactor)
+      .on('reInit', tweenScale)
       .on('scroll', tweenScale)
-      .on('slidefocus', tweenScale)
+      .on('slideFocus', tweenScale)
   }, [emblaApi, tweenScale])
 
   return (
