@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet-async';
 import useEmblaCarousel from 'embla-carousel-react';
 import type { EmblaCarouselType, EmblaEventType } from 'embla-carousel';
 import Navbar from '../components/layout/Navbar';
-import { OUR_WHATSAPP_LINK, PageRoutes } from '../helpers/constants';
+import { CLIENT_WHATSAPP_LINK, PageRoutes } from '../helpers/constants';
 import { linkDetails, type LinkDetail } from '../helpers/linkDetails';
 import { buildWhatsAppLink } from '../helpers/utils';
 
@@ -26,7 +26,7 @@ type CourseCardProps = {
 
 function CourseCard({ detail, isFeatured, isInteractiveForeground }: CourseCardProps) {
   const whatsappUrl = buildWhatsAppLink({
-    baseUrl: OUR_WHATSAPP_LINK,
+    baseUrl: CLIENT_WHATSAPP_LINK,
     message: detail.whatsappMessage,
   });
 
