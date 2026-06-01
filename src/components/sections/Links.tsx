@@ -1,25 +1,31 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { Grid } from '@mui/material';
-// import { useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
+import { getLinkDetailPath, linkDetails } from '../../helpers/linkDetails';
 
 type LinkCardProps = {
+  formatLabel?: string;
   title: string;
   subtitle?: string;
   image: string;
-  onClick?: () => void;
+  detailPath: string;
   ariaLabel: string;
 };
 
-function LinkCard({ title, subtitle, image, onClick, ariaLabel }: LinkCardProps) {
+function LinkCard({ formatLabel, title, subtitle, image, detailPath, ariaLabel }: LinkCardProps) {
   return (
     <Box
-      onClick={onClick}
-      role="img"
+      component={RouterLink}
+      to={detailPath}
       aria-label={ariaLabel}
       sx={{
+        display: 'block',
         position: 'relative',
-        height: { xs: 240, md: 480 },
+        height: { xs: 'auto', md: 480 },
+        minHeight: { xs: 240, md: 'unset' },
         cursor: 'pointer',
+        textDecoration: 'none',
+        color: 'inherit',
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -56,8 +62,24 @@ function LinkCard({ title, subtitle, image, onClick, ariaLabel }: LinkCardProps)
           color: '#fff',
           transition: 'transform 0.3s ease',
           px: 3,
+          py: 3,
         }}
       >
+        {formatLabel && (
+          <Typography
+            variant="overline"
+            component="p"
+            sx={{
+              letterSpacing: '0.16em',
+              fontSize: '0.72rem',
+              color: 'rgba(255,255,255,0.9)',
+              mb: 0.5,
+            }}
+          >
+            {formatLabel}
+          </Typography>
+        )}
+
         <Typography variant="h4" component="p" fontWeight={600} sx={{ mb: 1 }}>
           {title}
         </Typography>
@@ -89,14 +111,32 @@ function LinkCard({ title, subtitle, image, onClick, ariaLabel }: LinkCardProps)
             {subtitle}
           </Typography>
         )}
+
+        <Button
+          component="span"
+          variant="outlined"
+          sx={{
+            mt: 3,
+            color: '#fff',
+            borderColor: 'rgba(255,255,255,0.7)',
+            textTransform: 'none',
+            fontWeight: 500,
+            backdropFilter: 'blur(2px)',
+            backgroundColor: 'rgba(0,0,0,0.25)',
+            '&:hover': {
+              borderColor: '#fff',
+              backgroundColor: 'rgba(0,0,0,0.4)',
+            },
+          }}
+        >
+          Conocer más
+        </Button>
       </Box>
     </Box>
   );
 }
 
 export default function Links() {
-  // const navigate = useNavigate();
-
   return (
     <Box sx={{ position: 'relative', mt: 1 }}>
       {/* overlay */}
@@ -119,37 +159,18 @@ export default function Links() {
       />
 
       <Grid container spacing={1} sx={{ position: 'relative', zIndex: 0 }}>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <LinkCard
-            title="Sanación y Liberación"
-            subtitle="Suelta bloqueos emocionales y energéticos del pasado."
-            image="/person-conducting-reiki-therapy.jpg"
-            ariaLabel="Sesión de sanación energética y liberación emocional durante una mentoría espiritual consciente"
-
-            // onClick={() => navigate('/sanacion')}
-          />
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <LinkCard
-            title="Buscas tu propósito espiritual"
-            subtitle="Deseas encontrar el sentido profundo de tu existencia."
-            image="/link1.jpg"
-            ariaLabel="Espacio de meditación y búsqueda del propósito espiritual y sentido de vida"
-
-            // onClick={() => navigate('/proposito')}
-          />
-        </Grid>
-
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <LinkCard
-            title="Claves para tu Camino"
-            subtitle="Herramientas para manifestar la vida que deseas."
-            image="/link3.jpg"
-            ariaLabel="Herramientas espirituales para manifestar una vida consciente y alineada con el alma"
-
-            // onClick={() => navigate('/camino')}
-          />
-        </Grid>
+        {linkDetails.map((link) => (
+          <Grid key={link.slug} size={{ xs: 12, sm: 6, md: 4 }}>
+            <LinkCard
+              formatLabel={link.formatLabel}
+              title={link.title}
+              subtitle={link.subtitle}
+              image={link.image}
+              ariaLabel={link.ariaLabel}
+              detailPath={getLinkDetailPath(link.slug)}
+            />
+          </Grid>
+        ))}
       </Grid>
     </Box>
   );
